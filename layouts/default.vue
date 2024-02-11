@@ -16,7 +16,8 @@
   grid-template-columns: 1fr 6fr;
 }
 .main-container {
-  padding: 5vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
   max-width: 1600px;
   min-height: 1000px;
   margin: 0 auto;
