@@ -21,5 +21,6 @@
   max-width: 1600px;
   min-height: 1000px;
   margin: 0 auto;
+  background-color: #fecdd3;
 }
 </style>
