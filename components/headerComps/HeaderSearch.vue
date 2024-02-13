@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSearchStore } from "@/store/headerStore";
+import { useSearchStore } from "@/store/headerSearch";
 const headerStore = useSearchStore();
 </script>
 
@@ -13,7 +13,7 @@ const headerStore = useSearchStore();
     <div v-else class="relative">
       <input class="bg-zinc-800 border-hidden outline-none" />
       <Icon
-        class="absolute right-2 top-0"
+        class="absolute right-0 top-0"
         name="ic:sharp-close"
         size="25"
         @click="headerStore.toggleSearch"

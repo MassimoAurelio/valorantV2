@@ -13,7 +13,9 @@
         <div class="absolute right-10 flex flex-row items-center gap-3">
           <HeaderCompsHeaderSearch />
           <div class="hover:bg-zinc-800 p-2 rounded-xl">
-            <a variant="ghost"> <img src="/earth.svg" alt="img" /></a>
+            <a variant="ghost">
+              <NuxtImg src="/earth.svg" size="20" alt="img"
+            /></a>
           </div>
           <div>
             <UIButton size="sm" class="bg-red-500">Play now</UIButton>
