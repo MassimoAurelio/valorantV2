@@ -1,13 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <LayoutHeader />
   <section style="min-height: 100vh">
+    <LayoutHeader />
     <div class="main-container">
       <slot />
     </div>
+    <LayoutFooter />
   </section>
-  <LayoutFooter />
 </template>
 
 <style scoped>
