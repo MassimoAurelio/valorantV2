@@ -1,21 +1,34 @@
 import {
-  GAMA_INFO_DATA,
-  GAME_ITEM_DATA,
+  HEADER_ITEMS_DATA,
+  GAME_INFO_DATA,
+  SUPPORT_DATA,
+  OUR_SOCIALS_DATA,
 } from "@/components/data/header/game.info.data";
-
-const gameItem = GAME_ITEM_DATA;
-const gameInfo = GAMA_INFO_DATA;
 
 export const headerNavStore = defineStore({
   id: "navigation",
   state: () => ({
-    gameItem: GAME_ITEM_DATA,
-    gameInfo: GAMA_INFO_DATA,
-    dropdownStates: new Array(gameItem.length).fill(false),
+    gameItem: HEADER_ITEMS_DATA,
+    dropdownStates: new Array(HEADER_ITEMS_DATA.length).fill(false),
   }),
   actions: {
     toggleDropDown(index: number) {
       this.dropdownStates[index] = !this.dropdownStates[index];
+    },
+    getDropdownData(itemId: number) {
+      switch (itemId) {
+        case 1:
+          return GAME_INFO_DATA;
+        case 5:
+          return SUPPORT_DATA;
+        case 6:
+          return OUR_SOCIALS_DATA;
+        default:
+          return [];
+      }
+    },
+    hasDropdownData(itemId: number) {
+      return this.getDropdownData(itemId).length > 0;
     },
   },
 });

@@ -3,64 +3,7 @@ import type {
   IDropdownitem,
 } from "@/components/data/header/dropdown.types";
 
-/* export const AGENTS_DATA: IDropdowninfo[] = [
-  {
-    name: "AGENTS",
-  },
-  {
-    name: "MAPS",
-  },
-  {
-    name: "ARSENAL",
-  },
-  {
-    name: "PREMIER",
-  },
-];
-
-export const MAPS_DATA: IDropdowninfo[] = [
-  // данные для MAPS
-];
-
-export const ARSENAL_DATA: IDropdowninfo[] = [
-  // данные для ARSENAL
-];
-
-export const PREMIER_DATA: IDropdowninfo[] = [
-  // данные для PREMIER
-]; */
-
-export const GAMA_INFO_DATA: IDropdowninfo[] = [
-  {
-    name: "AGENTS",
-  },
-  {
-    name: "MAPS",
-  },
-  {
-    name: "ARSENAL",
-  },
-  {
-    name: "PREMIER",
-  },
-];
-
-export const MORE_DATA: IDropdowninfo[] = [
-  {
-    name: "AGENTS",
-  },
-  {
-    name: "MAPS",
-  },
-  {
-    name: "ARSENAL",
-  },
-  {
-    name: "PREMIER",
-  },
-];
-
-export const GAME_ITEM_DATA: IDropdownitem[] = [
+export const HEADER_ITEMS_DATA: IDropdownitem[] = [
   {
     name: "GAME INFO",
     id: 1,
@@ -84,5 +27,44 @@ export const GAME_ITEM_DATA: IDropdownitem[] = [
   {
     name: "OUR SOCIALS",
     id: 6,
+  },
+];
+
+export const GAME_INFO_DATA: IDropdowninfo[] = [
+  {
+    name: "AGENTS",
+  },
+  {
+    name: "MAPS",
+  },
+  {
+    name: "ARSENAL",
+  },
+  {
+    name: "PREMIER",
+  },
+];
+
+export const SUPPORT_DATA: IDropdowninfo[] = [
+  {
+    name: "SPECS",
+  },
+  {
+    name: "SUPPORT",
+  },
+  {
+    name: "COMUNITY CODE",
+  },
+];
+
+export const OUR_SOCIALS_DATA: IDropdowninfo[] = [
+  {
+    name: "TWITTER",
+  },
+  {
+    name: "YOUTUBE",
+  },
+  {
+    name: "INSTAGRAM",
   },
 ];
