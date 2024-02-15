@@ -6,6 +6,18 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxt/image",
     "@pinia/nuxt",
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          "Markazi Text": {
+            wght: [300, 400, 700],
+            ital: [300],
+          },
+        },
+      },
+    ],
+    "nuxt-icon",
   ],
 
   shadcn: {

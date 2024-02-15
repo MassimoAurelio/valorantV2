@@ -77,6 +77,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "DINNextW1G", sans-serif;
+    font-family: "Markazi Text",Arial,sans-serif;
   }
 }
