@@ -20,7 +20,7 @@ const redLineClass = dropdownClass;
         <div
           class="hover:bg-zinc-800 p-2 rounded-md flex flex-row items-center justify-center"
         >
-          <p class="text-base font-semibold">{{ item.name }}</p>
+          <p class="text-sm font-semibold">{{ item.name }}</p>
           <Icon
             name="gridicons:dropdown"
             size="20"

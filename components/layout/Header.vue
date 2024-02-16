@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const showPopup = ref(false);
+import { usePopupStore } from "@/store/popupStore";
 
-const togglePopup = () => {
-  showPopup.value = !showPopup.value;
-};
+const popupStore = usePopupStore();
 </script>
 
 <template>
@@ -23,25 +21,14 @@ const togglePopup = () => {
           </div>
 
           <div class="flex justify-center items-center h-screen">
-            <UIButton size="sm" class="bg-red-500" @click="togglePopup"
+            <UIButton
+              size="sm"
+              class="bg-red-500"
+              @click="popupStore.togglePopup"
               >Play now</UIButton
             >
           </div>
-          <div
-            v-if="showPopup"
-            class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50"
-          >
-            <div class="w-9/12 h-80 bg-slate-900 p-5">
-              <div class="flex justify-end items-start">
-                <UIButton @click="togglePopup">Cancel</UIButton>
-              </div>
-              <div class="flex flex-row items-center justify-center text-2xl text-white font-semibold">
-                <div> \ </div>
-                <div class="">GET SET UP TO PLAY</div>
-                <div> \ </div>
-              </div>
-            </div>
-          </div>
+          <PopupsHeaderPopup />
         </div>
       </div>
     </div>

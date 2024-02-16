@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       "@nuxtjs/google-fonts",
       {
         families: {
-          "Markazi Text": {
+          "Oswald": {
             wght: [300, 400, 700],
             ital: [300],
           },
