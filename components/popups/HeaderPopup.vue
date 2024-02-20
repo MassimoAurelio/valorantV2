@@ -7,13 +7,13 @@ const popupStore = usePopupStore();
 <template>
   <div
     v-if="popupStore.showPopup"
-    class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50"
+    class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
   >
     <div
       class="flex flex-col gap-10 w-8/12 h-80 bg-slate-900 p-5 border-t border-white"
     >
       <div class="flex justify-end items-start">
-        <UIButton @click="popupStore.togglePopup">Cancel</UIButton>
+        <UIButton @click="popupStore.togglePopup">Close</UIButton>
       </div>
       <div
         class="flex flex-row items-center justify-center text-2xl text-white font-semibold"
@@ -29,7 +29,7 @@ const popupStore = usePopupStore();
           </p>
           <button class="p-1 border border-white">
             <div
-              class="flex flex-row justify-center items-center w-48 h-12 bg-white hover:bg-slate-900 hover:text-white border border-slate-800"
+              class="flex flex-row justify-center items-center w-48 h-12 bg-white hover:bg-slate-900 hover:text-white border border-slate-600"
             >
               <span></span><span> MAKE ONE </span>
             </div>

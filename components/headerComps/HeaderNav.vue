@@ -7,7 +7,7 @@ const redLineClass = dropdownClass;
 
 <template>
   <div
-    class="flex flex-row items-center gap-1 text-white cursor-pointer relative"
+    class="flex flex-row items-center gap-1 text-white cursor-pointer relative z-50"
   >
     <div
       v-for="(item, index) in headerStore.gameItem"
