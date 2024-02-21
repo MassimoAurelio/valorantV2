@@ -2,10 +2,12 @@
 import { usePopupStore } from "@/store/popupStore";
 import { useScreenStore } from "@/store/resizeStore";
 import { useSearchStore } from "@/store/headerSearch";
+import { useBurgerMenu } from "@/store/burgerNav";
 
 const search = useSearchStore();
 const popupStore = usePopupStore();
 const screenStore = useScreenStore();
+const burgerNav = useBurgerMenu();
 const { platform } = storeToRefs(screenStore);
 </script>
 
@@ -35,11 +37,33 @@ const { platform } = storeToRefs(screenStore);
             >
           </div>
           <PopupsHeaderPopup />
-          <UIButton v-if="platform === 'tablet' || platform === 'mobile'">
-            <Icon name="iconamoon:menu-burger-horizontal-bold" size="25" />
-          </UIButton>
+          <div>
+            <UIButton
+              @click="burgerNav.togglePopup"
+              v-if="platform === 'tablet' || platform === 'mobile'"
+            >
+              <Icon name="iconamoon:menu-burger-horizontal-bold" size="25" />
+            </UIButton>
+          </div>
         </div>
       </div>
     </div>
   </header>
+  <div
+    v-if="burgerNav.showBurger"
+    class="w-80 h-24 absolute right-0 top-0 flex flex-col justify-center z-50 bg-zinc-800"
+  >
+    <div class="flex flex-row items-center">
+      <NuxtImg src="/logo.svg" width="50px" />
+      <UIButton @click="burgerNav.togglePopup">
+        <Icon name="mingcute:close-line" size="25" />
+      </UIButton>
+    </div>
+    <div class="bg-fuchsia-300">Header</div>
+    <div>
+      <a href="">first</a>
+      <a href="">second</a>
+    </div>
+    <HeaderCompsHeaderSearch />
+  </div>
 </template>
