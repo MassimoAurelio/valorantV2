@@ -3,13 +3,11 @@ import { usePopupStore } from "@/store/popupStore";
 import { useScreenStore } from "@/store/resizeStore";
 import { useSearchStore } from "@/store/headerSearch";
 import { useBurgerMenu } from "@/store/burgerNav";
-import { useDropDownMenu } from "@/store/dropDown";
 
 const search = useSearchStore();
 const popupStore = usePopupStore();
 const screenStore = useScreenStore();
 const burgerNav = useBurgerMenu();
-const dropDownStore = useDropDownMenu();
 const { platform } = storeToRefs(screenStore);
 </script>
 
@@ -51,28 +49,5 @@ const { platform } = storeToRefs(screenStore);
       </div>
     </div>
   </header>
-  <div
-    v-if="burgerNav.showBurger"
-    class="w-80 h-full absolute right-0 top-0 flex flex-col justify-center z-50 bg-zinc-800 p-4"
-  >
-    <div class="">
-      <div class="flex flex-row">
-        <NuxtImg src="/logo.svg" width="50px" />
-        <UIButton @click="burgerNav.togglePopup">
-          <Icon name="mingcute:close-line" size="25" />
-        </UIButton>
-      </div>
-      <HeaderCompsHeaderSearch />
-      <div class="cursor-pointer" @click="dropDownStore.toggleDropDown">
-        SPIELINFO
-      </div>
-      <div class="flex flex-col" v-if="dropDownStore.showDropDown">
-        <a href="">first</a>
-        <a href="">second</a>
-      </div>
-      <UIButton size="sm" class="bg-red-500" @click="popupStore.togglePopup"
-        >Play now</UIButton
-      >
-    </div>
-  </div>
+  <LayoutBurger />
 </template>

@@ -1,3 +1,10 @@
+import {
+  HEADER_ITEMS_DATA,
+  GAME_INFO_DATA,
+  SUPPORT_DATA,
+  OUR_SOCIALS_DATA,
+} from "@/components/data/header/game.info.data";
+
 export const useDropDownMenu = defineStore({
   id: "dropdown",
 
@@ -6,7 +13,7 @@ export const useDropDownMenu = defineStore({
   }),
 
   actions: {
-    toggleDropDown() {
+    toggleDropDown(index: number) {
       this.showDropDown = !this.showDropDown;
     },
   },
