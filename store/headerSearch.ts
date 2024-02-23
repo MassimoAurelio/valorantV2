@@ -4,7 +4,6 @@ export const useSearchStore = defineStore({
   id: "search",
   state: () => ({
     showSearch: true,
-    
   }),
   getters: {
     getShowSearch(): boolean {

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { headerNavStore } from "@/store/headerNav";
-import { useDropDownMenu } from "@/store/dropDown";
 const headerStore = headerNavStore();
 </script>
 
@@ -11,12 +10,12 @@ const headerStore = headerNavStore();
     <div
       v-for="(item, index) in headerStore.gameItem"
       :key="item.name"
-      class="p-4"
+      class="p-4 w-full"
       @click="headerStore.toggleDropDown(index)"
     >
       <a>
         <div
-          class="hover:bg-zinc-800 p-2 rounded-md flex flex-row items-center justify-center"
+          class="hover:bg-zinc-800 p-2 rounded-md flex flex-row justify-between items-center"
         >
           <p class="text-sm font-semibold" @click="headerStore.toggleDropDown">
             {{ item.name }}

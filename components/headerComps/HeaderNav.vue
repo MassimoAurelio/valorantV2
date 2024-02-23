@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { headerNavStore } from "@/store/headerNav";
-import { dropdownClass } from "@/hooks/redLineClass";
 const headerStore = headerNavStore();
-const redLineClass = dropdownClass;
 </script>
 
 <template>
@@ -36,7 +34,6 @@ const redLineClass = dropdownClass;
           "
         >
           <ul class="relative">
-            <div :class="redLineClass(index)"></div>
             <li
               v-for="dropdownItem in headerStore.getDropdownData(item.id)"
               :key="dropdownItem.name"
