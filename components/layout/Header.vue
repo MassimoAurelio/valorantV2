@@ -4,7 +4,6 @@ import { useScreenStore } from "@/store/resizeStore";
 import { useSearchStore } from "@/store/headerSearch";
 import { useBurgerMenu } from "@/store/burgerNav";
 
-const search = useSearchStore();
 const popupStore = usePopupStore();
 const screenStore = useScreenStore();
 const burgerNav = useBurgerMenu();
@@ -17,15 +16,18 @@ const { platform } = storeToRefs(screenStore);
       <div class="bg-neutral-900 h-20 flex items-center px-8 relative w-full">
         <div>
           <NuxtLink to="/">
-            <NuxtImg src="/logo.svg" width="100px" class="mx-auto" />
+            <NuxtImg
+              src="/logo.svg"
+              width="100px"
+              class="mx-auto"
+              loading="lazy"
+              preload
+            />
           </NuxtLink>
         </div>
         <HeaderCompsHeaderNav v-if="platform === 'desctope'" />
         <div class="absolute right-10 flex flex-row items-center gap-3">
-          <HeaderCompsHeaderSearch
-            v-if="platform === 'desctope'"
-        
-          />
+          <HeaderCompsHeaderSearch v-if="platform === 'desctope'" />
           <div class="hover:bg-zinc-800 p-2 rounded-xl">
             <a variant="ghost"> <img src="/earth.svg" alt="img" /></a>
           </div>
