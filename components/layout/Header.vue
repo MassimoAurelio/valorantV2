@@ -27,9 +27,13 @@ const { platform } = storeToRefs(screenStore);
         </div>
         <HeaderCompsHeaderNav v-if="platform === 'desctope'" />
         <div class="absolute right-10 flex flex-row items-center gap-3">
-          <HeaderCompsHeaderSearch v-if="platform === 'desctope'" />
+          <div>
+            <HeaderCompsHeaderSearch v-if="platform === 'desctope'" />
+          </div>
           <div class="hover:bg-zinc-800 p-2 rounded-xl">
-            <a variant="ghost"> <img src="/earth.svg" alt="img" /></a>
+            <a variant="ghost">
+              <NuxtImg src="/earth.svg" alt="img"  sizes="40"
+            /></a>
           </div>
 
           <div class="flex justify-center items-center">

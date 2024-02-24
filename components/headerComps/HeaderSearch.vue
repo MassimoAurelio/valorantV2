@@ -19,18 +19,30 @@ const { condition = "close" } = props;
       class="cursor-pointer bg-zinc-800 p-2 rounded-xl"
     >
       <slot name="prepend"></slot>
-      <img
+      <NuxtImg
         src="/search.svg"
         v-if="headerStore.showSearch && condition !== 'open'"
         @click="headerStore.toggleSearch"
+        sizes="40"
       />
       <div v-else class="relative">
-        <input class="bg-zinc-800 border-hidden outline-none w-full" />
+        <input
+          class="bg-zinc-800 border-hidden outline-none w-full"
+          v-model="headerStore.searchQuery"
+        />
         <Icon
+          v-if="condition === 'close'"
           class="absolute right-0 top-0"
           name="ic:sharp-close"
           size="25"
           @click="headerStore.toggleSearch"
+        />
+        <Icon
+          v-if="condition === 'open'"
+          class="absolute right-0 top-0"
+          name="ic:sharp-close"
+          size="25"
+          @click="headerStore.clearSearch"
         />
       </div>
     </div>
