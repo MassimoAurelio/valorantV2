@@ -27,13 +27,13 @@ const { condition = "close" } = props;
       />
       <div v-else class="relative">
         <input
-          class="bg-zinc-800 border-hidden outline-none w-full"
+          class="bg-zinc-800 border-hidden outline-none w-full text-white"
           v-model="headerStore.searchQuery"
         />
         <Icon
           v-if="condition === 'close'"
           class="absolute right-0 top-0"
-          name="ic:sharp-close"
+          name="mdi:close"
           size="25"
           @click="headerStore.toggleSearch"
         />

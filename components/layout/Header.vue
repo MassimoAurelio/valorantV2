@@ -32,7 +32,7 @@ const { platform } = storeToRefs(screenStore);
           </div>
           <div class="hover:bg-zinc-800 p-2 rounded-xl">
             <a variant="ghost">
-              <NuxtImg src="/earth.svg" alt="img"  sizes="40"
+              <NuxtImg src="/earth.svg" alt="img" sizes="40"
             /></a>
           </div>
 
