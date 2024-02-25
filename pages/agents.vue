@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { Swiper, SwiperSlide } from "swiper/vue";
 import { useAgentsStore } from "@/store/useAgents";
+import "swiper/css";
+import "swiper/css/virtual";
 
 const agentsStore = useAgentsStore();
 
@@ -18,15 +21,18 @@ fetchAgents();
 
 <template>
   <section class="relative">
-    <NuxtImg src="/agents.webp" alt="img" class="absolute w-full" />
-    <div class="absolute flex flex-col items-start">
-      <div
+    <div>
+      <NuxtImg src="/agents.webp" alt="img" class="absolute w-full" />
+    </div>
+
+    <Swiper :slides-per-view="3" :space-between="0">
+      <SwiperSlide
         v-for="agent in agentsStore.agents"
         :key="agent.uuid"
         class="p-2 text-8xl font-black text-white"
       >
-        {{ agent.displayName }}
-      </div>
-    </div>
+        <div>{{ agent.displayName }}</div>
+      </SwiperSlide>
+    </Swiper>
   </section>
 </template>
