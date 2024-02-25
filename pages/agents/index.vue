@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { useAgentsStore } from "@/store/useAgents";
+
 import "swiper/css";
 import "swiper/css/virtual";
 
 const agentsStore = useAgentsStore();
+const router = useRouter();
 
 const fetchAgents = async () => {
   try {
@@ -17,6 +19,10 @@ const fetchAgents = async () => {
 };
 
 fetchAgents();
+
+const handleCardClick = (uuid: number) => {
+  router.push(`/agents/${uuid}`);
+};
 </script>
 
 <template>
@@ -30,8 +36,11 @@ fetchAgents();
         v-for="agent in agentsStore.agents"
         :key="agent.uuid"
         class="p-2 text-8xl font-black text-white"
+        @click.stop="handleCardClick(agent.uuid)"
       >
-        <div class="cursor-pointer">{{ agent.displayName }}</div>
+        <div class="cursor-pointer">
+          {{ agent.displayName }}
+        </div>
       </SwiperSlide>
     </Swiper>
   </section>
