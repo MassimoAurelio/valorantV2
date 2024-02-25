@@ -31,7 +31,7 @@ fetchAgents();
         :key="agent.uuid"
         class="p-2 text-8xl font-black text-white"
       >
-        <div>{{ agent.displayName }}</div>
+        <div class="cursor-pointer">{{ agent.displayName }}</div>
       </SwiperSlide>
     </Swiper>
   </section>

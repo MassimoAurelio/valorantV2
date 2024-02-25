@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       "@nuxtjs/google-fonts",
       {
         families: {
-          "Oswald": {
+          Oswald: {
             wght: [300, 400, 700],
             ital: [300],
           },

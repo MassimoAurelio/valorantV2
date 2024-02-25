@@ -28,6 +28,7 @@ export const useAgentsStore = defineStore({
 
   actions: {
     setAgents(agents: IAgents[]) {
+    
       this.agents = agents;
     },
   },

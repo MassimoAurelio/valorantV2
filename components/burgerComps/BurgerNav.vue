@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { headerNavStore } from "@/store/headerNav";
+
 const headerStore = headerNavStore();
 </script>
 

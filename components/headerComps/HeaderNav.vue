@@ -39,7 +39,9 @@ const headerStore = headerNavStore();
               :key="dropdownItem.name"
               class="text-white p-1 hover:bg-zinc-700 rounded-md min-w-44"
             >
-              {{ dropdownItem.name }}
+              <NuxtLink :to="`/${dropdownItem.name.toLowerCase()}`">
+                {{ dropdownItem.name }}</NuxtLink
+              >
             </li>
           </ul>
         </div>

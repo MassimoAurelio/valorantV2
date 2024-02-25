@@ -7,7 +7,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const slots = useSlots();
 
 const { condition = "close" } = props;
 </script>
