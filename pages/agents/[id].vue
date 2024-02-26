@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { useAgentsStore } from "@/store/useAgents";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/virtual";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+
 const agentsStore = useAgentsStore();
 const route = useRoute();
+const router = useRouter();
 const uuid = route.params.id;
 
 const fetchDynamicsAgents = async (uuid: any) => {
@@ -14,7 +24,9 @@ const fetchDynamicsAgents = async (uuid: any) => {
   }
 };
 
-
+const handleCardClick = (uuid: number) => {
+  router.push(`/agents/${uuid}`);
+};
 
 onMounted(() => {
   fetchDynamicsAgents(uuid);
@@ -22,18 +34,42 @@ onMounted(() => {
 </script>
 
 <template>
-  <section>
-    <div class="flex flex-row justify-center items-center">
-      <div class="w-2/3">
-        <img :src="agentsStore.dynamicAgents.fullPortrait" alt="img" />
-      </div>
-      <div
-        class="flex flex-col justify-center items-start gap-5 w-80 ml-auto mt-0 z-1 h-64"
-      >
-        <h1>{{ agentsStore.dynamicAgents.displayName }}</h1>
-        <span>// BIOGRAPHY</span>
-        <div>{{ agentsStore.dynamicAgents.description }}</div>
-      </div>
+  <section class="flex flex-row items-center justify-center">
+    <Carousel
+      orientation="vertical"
+      class="relative w-full max-w-xsw-full max-w-s"
+      :opts="{
+        align: 'start',
+      }"
+    >
+      <CarouselContent class="-mt-1 h-[700px]">
+        <CarouselItem
+          v-for="agent in agentsStore.agents"
+          :key="agent.uuid"
+          class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white"
+          @click.stop="handleCardClick(agent.uuid)"
+        >
+          <div class="cursor-pointer">
+            <h2
+              class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
+            >
+              {{ agent.displayName }}
+            </h2>
+          </div>
+        </CarouselItem>
+      </CarouselContent>
+    </Carousel>
+    <div class="flex justify-center items-center w-80">
+      <img
+        :src="agentsStore.dynamicAgents.fullPortrait"
+        alt="img"
+        class="mx-auto"
+      />
+    </div>
+    <div class="flex flex-col items-start gap-5 w-1/2 ml-auto mt-0">
+      <h1>{{ agentsStore.dynamicAgents.displayName }}</h1>
+      <span>// BIOGRAPHY</span>
+      <div>{{ agentsStore.dynamicAgents.description }}</div>
     </div>
   </section>
 </template>
