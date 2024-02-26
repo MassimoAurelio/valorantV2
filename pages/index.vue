@@ -3,7 +3,7 @@ import { usePopupStore } from "@/store/popupStore";
 const popupStore = usePopupStore();
 
 useSeoMeta({
-  title: "VALORANT: Main Page",
+  title: "VALORANT: MAIN PAGE",
   ogTitle: "VALORANT: Main Page",
   description: "This is my amazing site, let me tell you all about it.",
   ogDescription: "This is my amazing site, let me tell you all about it.",

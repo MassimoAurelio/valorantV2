@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { useAgentsStore } from "@/store/useAgents";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/virtual";
 import {
   Carousel,
   CarouselContent,
@@ -24,8 +21,9 @@ const fetchDynamicsAgents = async (uuid: any) => {
   }
 };
 
-const handleCardClick = (uuid: number) => {
+const handleCardClick = (uuid: number, displayName: string) => {
   router.push(`/agents/${uuid}`);
+  useSeoMeta({ title: `VALORANT AGENT : ${displayName}` });
 };
 
 onMounted(() => {
@@ -36,6 +34,7 @@ onMounted(() => {
 <template>
   <section class="flex flex-row items-center justify-center">
     <Carousel
+      ref="carousel"
       orientation="vertical"
       class="relative w-full max-w-xsw-full max-w-s"
       :opts="{
@@ -47,7 +46,7 @@ onMounted(() => {
           v-for="agent in agentsStore.agents"
           :key="agent.uuid"
           class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white"
-          @click.stop="handleCardClick(agent.uuid)"
+          @click.stop="handleCardClick(agent.uuid, agent.displayName)"
         >
           <div class="cursor-pointer">
             <h2
@@ -59,11 +58,11 @@ onMounted(() => {
         </CarouselItem>
       </CarouselContent>
     </Carousel>
-    <div class="flex justify-center items-center w-80">
+    <div class="flex justify-center items-center">
       <img
         :src="agentsStore.dynamicAgents.fullPortrait"
         alt="img"
-        class="mx-auto"
+        class="mx-auto object-cover w-full h-full"
       />
     </div>
     <div class="flex flex-col items-start gap-5 w-1/2 ml-auto mt-0">
