@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from "swiper/vue";
 import { useAgentsStore } from "@/store/useAgents";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
-import "swiper/css";
-import "swiper/css/virtual";
+useSeoMeta({
+  title: "VALORANT: AGENTS",
+});
 
 const agentsStore = useAgentsStore();
 const router = useRouter();
@@ -20,8 +25,9 @@ const fetchAgents = async () => {
 
 fetchAgents();
 
-const handleCardClick = (uuid: number) => {
+const handleCardClick = (uuid: number, displayName: string) => {
   router.push(`/agents/${uuid}`);
+  useSeoMeta({ title: `VALORANT AGENT : ${displayName.toUpperCase()}` });
 };
 </script>
 
@@ -31,17 +37,30 @@ const handleCardClick = (uuid: number) => {
       <NuxtImg src="/agents.webp" alt="img" class="absolute w-full" />
     </div>
 
-    <Swiper :slides-per-view="3" :space-between="0">
-      <SwiperSlide
-        v-for="agent in agentsStore.agents"
-        :key="agent.uuid"
-        class="p-2 text-8xl font-black text-white"
-        @click.stop="handleCardClick(agent.uuid)"
-      >
-        <div class="cursor-pointer">
-          {{ agent.displayName }}
-        </div>
-      </SwiperSlide>
-    </Swiper>
+    <Carousel
+      ref="carousel"
+      orientation="vertical"
+      class="relative w-full max-w-xsw-full max-w-s"
+      :opts="{
+        align: 'start',
+      }"
+    >
+      <CarouselContent class="-mt-1 h-[600px]">
+        <CarouselItem
+          v-for="agent in agentsStore.agents"
+          :key="agent.uuid"
+          class="pl-0 md:basis-1/2 lg:basis-1/5 p-2 text-8xl font-black text-white"
+          @click.stop="handleCardClick(agent.uuid, agent.displayName)"
+        >
+          <div class="cursor-pointer">
+            <h2
+              class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
+            >
+              {{ agent.displayName.toUpperCase() }}
+            </h2>
+          </div>
+        </CarouselItem>
+      </CarouselContent>
+    </Carousel>
   </section>
 </template>

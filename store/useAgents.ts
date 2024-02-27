@@ -1,9 +1,13 @@
+import { defineStore } from "pinia";
+
+
 interface IAbilities {
   slot: string;
   displayName: string;
   displayIcon: string;
   description: string;
 }
+
 interface IRole {
   description: string;
   displayIcon: string;
@@ -18,7 +22,7 @@ interface IAgents {
   displayicon: string;
   uuid: any;
   displayName: string;
-  role: IRole[];
+  role: IRole;
 }
 
 export const useAgentsStore = defineStore({
@@ -35,5 +39,6 @@ export const useAgentsStore = defineStore({
     setDynamics(dynamicAgents: IAgents) {
       this.dynamicAgents = dynamicAgents;
     },
+  
   },
 });
