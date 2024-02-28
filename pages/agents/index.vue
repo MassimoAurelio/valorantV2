@@ -32,11 +32,10 @@ const handleCardClick = (uuid: number, displayName: string) => {
 </script>
 
 <template>
-  <section class="relative">
-    <div>
-      <NuxtImg src="/agents.webp" alt="img" class="absolute w-full" />
-    </div>
-
+  <div class="relative w-full">
+    <!--  <div>
+      <NuxtImg src="/agents.webp" alt="img" class="absolute w-full z-0" />
+    </div> -->
     <Carousel
       ref="carousel"
       orientation="vertical"
@@ -45,11 +44,11 @@ const handleCardClick = (uuid: number, displayName: string) => {
         align: 'start',
       }"
     >
-      <CarouselContent class="-mt-1 h-[600px]">
+      <CarouselContent class="-mt-1 h-[700px]">
         <CarouselItem
           v-for="agent in agentsStore.agents"
           :key="agent.uuid"
-          class="pl-0 md:basis-1/2 lg:basis-1/5 p-2 text-8xl font-black text-white"
+          class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white"
           @click.stop="handleCardClick(agent.uuid, agent.displayName)"
         >
           <div class="cursor-pointer">
@@ -62,5 +61,5 @@ const handleCardClick = (uuid: number, displayName: string) => {
         </CarouselItem>
       </CarouselContent>
     </Carousel>
-  </section>
+  </div>
 </template>

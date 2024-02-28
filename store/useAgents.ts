@@ -1,6 +1,3 @@
-import { defineStore } from "pinia";
-
-
 interface IAbilities {
   slot: string;
   displayName: string;
@@ -39,6 +36,5 @@ export const useAgentsStore = defineStore({
     setDynamics(dynamicAgents: IAgents) {
       this.dynamicAgents = dynamicAgents;
     },
-  
   },
 });

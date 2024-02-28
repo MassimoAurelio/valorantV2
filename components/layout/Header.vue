@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { usePopupStore } from "@/store/popupStore";
 import { useScreenStore } from "@/store/resizeStore";
-import { useSearchStore } from "@/store/headerSearch";
 import { useBurgerMenu } from "@/store/burgerNav";
 
 const popupStore = usePopupStore();
