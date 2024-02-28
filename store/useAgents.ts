@@ -1,26 +1,4 @@
-interface IAbilities {
-  slot: string;
-  displayName: string;
-  displayIcon: string;
-  description: string;
-}
-
-interface IRole {
-  description: string;
-  displayIcon: string;
-  displayName: string;
-}
-
-interface IAgents {
-  abilities: IAbilities[];
-  description: string;
-  displayIconSmall: string;
-  fullPortrait: string;
-  displayicon: string;
-  uuid: any;
-  displayName: string;
-  role: IRole;
-}
+import type { IAbilities, IRole, IAgents } from "@/types";
 
 export const useAgentsStore = defineStore({
   id: "Agents",

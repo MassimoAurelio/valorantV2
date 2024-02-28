@@ -3,7 +3,7 @@ import {
   GAME_INFO_DATA,
   SUPPORT_DATA,
   OUR_SOCIALS_DATA,
-} from "@/components/data/header/game.info.data";
+} from "@/types";
 
 export const headerNavStore = defineStore({
   id: "navigation",

@@ -1,5 +1,3 @@
-export interface IHeader {}
-
 export const useSearchStore = defineStore({
   id: "search",
   state: () => ({

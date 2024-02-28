@@ -21,6 +21,7 @@ mapsReq();
 
 <template>
   <section>
+    <h1 class="text-8xl text-white font-bold">MAPS</h1>
     <Carousel
       ref="carousel"
       orientation="horizontal"
@@ -29,20 +30,24 @@ mapsReq();
         align: 'start',
       }"
     >
-      <CarouselContent class="h-[700px]">
+      <CarouselContent class="-mt-1 h-[700px]">
         <CarouselItem
           v-for="map in mapStore.maps"
           :key="map.uuid"
-          class="pl-0 md:basis-1/2 lg:basis-1/1 p-2 text-8xl font-black text-white w-96"
+          class="relative p-2"
         >
-          <div class="cursor-pointer">
-            <h2
-              class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
-            >
-              {{ map?.displayName.toUpperCase() }}
-            </h2>
+          <div class="w-1/2">
+            <img :src="map.splash" alt="map img" />
           </div>
-          <img :src="map.listViewIcon" alt="" />
+          <div
+            class="absolute right-0 bg-gray-700 max-w-72 rounded-lg p-3 text-white"
+          >
+            <p class="z-100">{{ map.displayName }}</p>
+            <p>{{ map.narrativeDescription }}</p>
+            <button class="p-2">
+              <p>View gallery</p>
+            </button>
+          </div>
         </CarouselItem>
       </CarouselContent>
     </Carousel>

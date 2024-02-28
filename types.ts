@@ -1,7 +1,46 @@
-import type {
-  IDropdowninfo,
-  IDropdownitem,
-} from "@/components/data/header/dropdown.types";
+//agents
+export interface IAbilities {
+  slot: string;
+  displayName: string;
+  displayIcon: string;
+  description: string;
+}
+
+export interface IRole {
+  description: string;
+  displayIcon: string;
+  displayName: string;
+}
+
+export interface IAgents {
+  abilities: IAbilities[];
+  description: string;
+  displayIconSmall: string;
+  fullPortrait: string;
+  displayicon: string;
+  uuid: any;
+  displayName: string;
+  role: IRole;
+}
+
+//maps
+
+export interface IMaps {
+  displayName: string;
+  narrativeDescription: string;
+  uuid: string | number;
+  splash: string;
+}
+
+//header
+export interface IDropdowninfo {
+  name: string;
+}
+
+export interface IDropdownitem {
+  name: string;
+  id: number;
+}
 
 export const HEADER_ITEMS_DATA: IDropdownitem[] = [
   {
