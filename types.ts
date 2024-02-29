@@ -32,6 +32,31 @@ export interface IMaps {
   splash: string;
 }
 
+//arsenal
+export interface IShopData {
+  category: string;
+  categoryText: string;
+  cost: number;
+}
+
+export interface ISkins {
+  contentTierUuid: string;
+  displayIcon: string;
+  displayName: string;
+  themeUuid: string;
+  uuid: string;
+}
+export interface IArsenal {
+  category: string;
+  defaultSkinUuid: string;
+  displayIcon: string;
+  displayName: string;
+  killStreamIcon: string;
+  shopData: IShopData;
+  skins: ISkins[];
+  uuid: string;
+}
+
 //header
 export interface IDropdowninfo {
   name: string;

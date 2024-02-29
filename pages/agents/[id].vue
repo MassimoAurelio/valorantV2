@@ -67,21 +67,6 @@ onMounted(() => {
 
 <template>
   <section class="flex flex-row items-center justify-center relative py-3.5">
-    <!-- <div class="absolute inset-0 overflow-hidden z-0 w-full h-full">
-      <video
-        preload="true"
-        muted
-        loop
-        playsinline
-        poster="https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltbded518020183769/5eb26f5389bac8148a8006cc/agent-background-generic.JPG"
-      >
-        <source
-          src="https://assets.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt29d7c4f6bc077e9e/5eb26f54402b8b4d13a56656/agent-background-generic.mp4"
-          type="video/mp4"
-        />
-      </video>
-    </div> -->
-
     <div :class="qwe">
       <Carousel
         class="relative w-full max-w-sm"
@@ -94,7 +79,7 @@ onMounted(() => {
           <CarouselItem
             v-for="agent in agentsStore?.agents"
             :key="agent?.uuid"
-            class="md:basis-1/3 lg:basis-1/3"
+            class="md:basis-1/2 lg:basis-1/6"
             @click.stop="handleCardClick(agent?.uuid, agent?.displayName)"
           >
             <div class="p-1">

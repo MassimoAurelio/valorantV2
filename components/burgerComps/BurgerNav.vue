@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { headerNavStore } from "@/store/headerNav";
+import { useBurgerMenu } from "@/store/burgerNav";
 
 const headerStore = headerNavStore();
+const burgerStore = useBurgerMenu();
 </script>
 
 <template>
@@ -35,7 +37,12 @@ const headerStore = headerNavStore();
               :key="dropdownItem.name"
               class="text-white p-1 hover:bg-zinc-700 rounded-md w-full"
             >
-              {{ dropdownItem.name }}
+              <NuxtLink
+                @click="burgerStore.togglePopup"
+                :to="`/${dropdownItem.name.toLowerCase()}`"
+              >
+                {{ dropdownItem.name }}</NuxtLink
+              >
             </li>
           </ul>
         </div>
