@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
-import type { IArsenal } from "@/types";
 
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
@@ -11,6 +10,7 @@ const arsenalRequest = async () => {
   try {
     const request = await fetch("https://valorant-api.com/v1/weapons");
     const { data } = await request.json();
+    arsenalStore.setCategory(data);
     arsenalStore.setArsenal(data);
   } catch (e) {
     console.error(e);
@@ -45,12 +45,11 @@ onMounted(arsenalRequest);
           v-if="dropDownStore.showDropDown"
         >
           <div
-            v-for="item in arsenalStore.arsenal"
-            :key="item.uuid"
+            v-for="item in arsenalStore.category"
             class="p-3 cursor-pointer text-black"
             @click.stop="handleCardClick(item.uuid, item.displayName)"
           >
-            {{ item.category }}
+            {{ item.shopData?.categoryText }}
           </div>
         </div>
       </div>

@@ -1,11 +1,20 @@
-import type { IArsenal } from "@/types";
+import type { IArsenal, IShopData } from "@/types";
 
 export const useArsenalStore = defineStore({
   id: "arsenal",
 
   state: () => ({
     arsenal: [] as IArsenal[],
-    category: [] as IArsenal[],
+    category: {} as IArsenal[],
+    weaponClass: [
+      "heavy",
+      "rifle",
+      "shotgun",
+      "sidearm",
+      "sniper",
+      "smg",
+      "meele",
+    ] as string[],
     dynamicGuns: {} as IArsenal,
     skins: [] as IArsenal[],
   }),

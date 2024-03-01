@@ -56,7 +56,6 @@ export interface IArsenal {
   skins: ISkins[];
   uuid: string;
 }
-
 //header
 export interface IDropdowninfo {
   name: string;
