@@ -22,7 +22,7 @@ const fetchDynamicsAgents = async (uuid: any) => {
     console.error("WARNING:", error);
   }
 };
-const handleCardClick = (uuid: number, displayName: string) => {
+const handleCardClick = (uuid: string, displayName: string) => {
   router.push(`/agents/${uuid}`);
   useSeoMeta({ title: `VALORANT AGENT : ${displayName.toUpperCase()}` });
 };

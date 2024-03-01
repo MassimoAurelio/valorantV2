@@ -18,7 +18,7 @@ export interface IAgents {
   displayIconSmall: string;
   fullPortrait: string;
   displayicon: string;
-  uuid: any;
+  uuid: string;
   displayName: string;
   role: IRole;
 }
@@ -102,7 +102,7 @@ export const GAME_INFO_DATA: IDropdowninfo[] = [
     name: "MAPS",
   },
   {
-    name: "ARSENAL",
+    name: "WEAPONS",
   },
   {
     name: "PREMIER",
