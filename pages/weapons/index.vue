@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
+import { WEAPON_CATEGORY } from "@/types";
 
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
@@ -45,11 +46,10 @@ onMounted(arsenalRequest);
           v-if="dropDownStore.showDropDown"
         >
           <div
-            v-for="item in arsenalStore.category"
+            v-for="item in WEAPON_CATEGORY"
             class="p-3 cursor-pointer text-black"
-            @click.stop="handleCardClick(item.uuid, item.displayName)"
           >
-            {{ item.shopData?.categoryText }}
+            {{ item.categoryName }}
           </div>
         </div>
       </div>

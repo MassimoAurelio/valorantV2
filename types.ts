@@ -131,3 +131,31 @@ export const OUR_SOCIALS_DATA: IDropdowninfo[] = [
     name: "INSTAGRAM",
   },
 ];
+
+interface IWeaponCategory {
+  categoryName: string;
+}
+
+export const WEAPON_CATEGORY: IWeaponCategory[] = [
+  {
+    categoryName: "Heavy",
+  },
+  {
+    categoryName: "Rifle",
+  },
+  {
+    categoryName: "Sidearm",
+  },
+  {
+    categoryName: "Shotgun",
+  },
+  {
+    categoryName: "Sniper",
+  },
+  {
+    categoryName: "SMG",
+  },
+  {
+    categoryName: "Melee",
+  },
+];
