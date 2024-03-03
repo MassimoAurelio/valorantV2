@@ -6,7 +6,6 @@ export const useArsenalStore = defineStore({
   state: () => ({
     arsenal: [] as IArsenal[],
     category: {} as IArsenal[],
-    selectedCategory: ref(""),
     dynamicGuns: {} as IArsenal,
     skins: [] as IArsenal[],
   }),
@@ -25,9 +24,6 @@ export const useArsenalStore = defineStore({
 
     setSkins(skins: IArsenal[]) {
       this.skins = skins;
-    },
-    handleCategoryClick(category: string) {
-      this.selectedCategory = category;
     },
   },
 });

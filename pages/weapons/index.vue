@@ -2,6 +2,9 @@
 import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
+import { useIsLoadingStore } from "@/store/loaderStore";
+
+const loaderStore = useIsLoadingStore();
 
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
@@ -10,6 +13,7 @@ const selectedCategory = ref("");
 
 const arsenalRequest = async () => {
   try {
+    loaderStore.set(true);
     const request = await fetch("https://valorant-api.com/v1/weapons");
     const { data } = await request.json();
     arsenalStore.setArsenal(data);
@@ -24,6 +28,7 @@ const arsenalRequest = async () => {
   } catch (e) {
     console.error(e);
   }
+  loaderStore.set(false);
 };
 
 const handleCardClick = (uuid: string, displayName: string) => {
@@ -39,6 +44,11 @@ const handleCategoryClick = (category: string) => {
 
 onMounted(() => {
   arsenalRequest();
+});
+
+onUnmounted(() => {
+  dropDownStore.showDropDown = false;
+  selectedCategory.value = "";
 });
 </script>
 
