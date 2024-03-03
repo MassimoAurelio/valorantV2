@@ -138,6 +138,9 @@ interface IWeaponCategory {
 
 export const WEAPON_CATEGORY: IWeaponCategory[] = [
   {
+    categoryName: "ALL WEAPON",
+  },
+  {
     categoryName: "Heavy",
   },
   {

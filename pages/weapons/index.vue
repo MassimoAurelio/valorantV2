@@ -6,13 +6,21 @@ import { WEAPON_CATEGORY } from "@/types";
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const router = useRouter();
+const selectedCategory = ref("");
 
 const arsenalRequest = async () => {
   try {
     const request = await fetch("https://valorant-api.com/v1/weapons");
     const { data } = await request.json();
-    arsenalStore.setCategory(data);
     arsenalStore.setArsenal(data);
+    if (selectedCategory.value) {
+      const filterCategory = data.filter(function (item: any) {
+        return (
+          item.category === `EEquippableCategory::${selectedCategory.value}`
+        );
+      });
+      arsenalStore.setArsenal(filterCategory);
+    }
   } catch (e) {
     console.error(e);
   }
@@ -23,7 +31,15 @@ const handleCardClick = (uuid: string, displayName: string) => {
   useSeoMeta({ title: `VALORANT GUNS : ${displayName.toUpperCase()}` });
 };
 
-onMounted(arsenalRequest);
+const handleCategoryClick = (category: string) => {
+  selectedCategory.value = category;
+  arsenalRequest();
+  dropDownStore.toggleDropDown();
+};
+
+onMounted(() => {
+  arsenalRequest();
+});
 </script>
 
 <template>
@@ -48,8 +64,9 @@ onMounted(arsenalRequest);
           <div
             v-for="item in WEAPON_CATEGORY"
             class="p-3 cursor-pointer text-black"
+            @click="handleCategoryClick(item.categoryName)"
           >
-            {{ item.categoryName }}
+            {{ item.categoryName.toUpperCase() }}
           </div>
         </div>
       </div>
@@ -59,7 +76,11 @@ onMounted(arsenalRequest);
         <div
           class="text-white p-5 hover:bg-slate-500 flex flex-col justify-between h-full"
         >
-          <span class="p-2">{{ gun.displayName }}</span>
+          <span
+            class="p-2"
+            @click="handleCardClick(gun.uuid, gun.displayName)"
+            >{{ gun.displayName }}</span
+          >
           <img
             :src="gun.displayIcon"
             class="object-contain h-40 w-full"
