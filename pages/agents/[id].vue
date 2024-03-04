@@ -126,7 +126,11 @@ onMounted(() => {
         </CarouselContent>
       </Carousel>
       <div :class="img">
-        <img :src="agentsStore?.dynamicAgents?.fullPortrait" alt="img" />
+        <NuxtImg
+          v-if="agentsStore?.dynamicAgents?.fullPortrait"
+          :src="agentsStore?.dynamicAgents?.fullPortrait"
+          alt="img"
+        />
       </div>
 
       <div class="flex flex-col items-start gap-5 w-4/5 text-white">
@@ -139,7 +143,10 @@ onMounted(() => {
           <h1 class="font-black text-white text-5xl">
             {{ agentsStore.dynamicAgents.role.displayName.toUpperCase() }}
           </h1>
-          <img :src="agentsStore.dynamicAgents.role.displayIcon" class="w-10" />
+          <NuxtImg
+            :src="agentsStore.dynamicAgents.role.displayIcon"
+            class="w-10"
+          />
         </div>
 
         <span>// BIOGRAPHY</span>

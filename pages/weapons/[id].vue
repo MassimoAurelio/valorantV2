@@ -25,6 +25,10 @@ onMounted(() => {
     {{ arsenalStore.dynamicGuns.displayName }}
   </div>
   <div>
-    <img :src="arsenalStore.dynamicGuns.displayIcon" alt="" />
+    <NuxtImg
+      :src="arsenalStore.dynamicGuns.displayIcon"
+      alt="Gun Image"
+      class="object-contain h-40 w-full"
+    />
   </div>
 </template>

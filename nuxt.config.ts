@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "nuxt-icon",
     "@nuxt/image",
+    "nuxt-delay-hydration",
     "@pinia/nuxt",
     [
       "@nuxtjs/google-fonts",
@@ -19,7 +20,10 @@ export default defineNuxtConfig({
     ],
     "nuxt-icon",
   ],
-
+  delayHydration: {
+    debug: process.env.NODE_ENV === "development",
+    mode: "mount",
+  },
   shadcn: {
     prefix: "UI",
     /**

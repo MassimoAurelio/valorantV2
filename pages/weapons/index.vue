@@ -3,11 +3,11 @@ import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
 
-
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const router = useRouter();
 const selectedCategory = ref("");
+
 
 const arsenalRequest = async () => {
   try {
@@ -56,7 +56,7 @@ onUnmounted(() => {
           class="flex flex-row justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
           @click="dropDownStore.toggleDropDown"
         >
-          <span>{{
+          <span class="font-medium">{{
             selectedCategory ? selectedCategory.toUpperCase() : "ALL WEAPON"
           }}</span>
           <div>
@@ -69,7 +69,7 @@ onUnmounted(() => {
         >
           <div
             v-for="item in WEAPON_CATEGORY"
-            class="p-3 cursor-pointer text-black"
+            class="p-3 cursor-pointer font-medium text-black"
             @click="handleCategoryClick(item.categoryName)"
           >
             {{ item.categoryName.toUpperCase() }}
@@ -78,19 +78,15 @@ onUnmounted(() => {
       </div>
     </div>
     <div class="flex flex-wrap py-7">
-      <div v-for="gun in arsenalStore.arsenal" :key="gun.uuid" class="w-1/2">
+      <div v-for="gun in arsenalStore.arsenal" :key="gun.uuid" class="w-1/2 cursor-pointer">
         <div
           class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between h-full"
         >
-          <span
-            class="p-2 text-5xl"
-            @click="handleCardClick(gun.uuid, gun.displayName)"
-            >{{ gun.displayName }}</span
-          >
-          <img
+          <span class="p-2 text-5xl">{{ gun.displayName }}</span>
+          <NuxtImg
             :src="gun.displayIcon"
-            class="object-contain h-40 w-full"
             alt="Gun Image"
+            class="object-contain h-40 w-full"
           />
         </div>
       </div>
