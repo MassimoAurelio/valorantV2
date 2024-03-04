@@ -53,7 +53,7 @@ export interface IArsenal {
   displayName: string;
   killStreamIcon: string;
   shopData: IShopData;
-  skins: ISkins[];
+  skins: ISkins;
   uuid: string;
 }
 //header

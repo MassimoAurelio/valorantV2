@@ -23,7 +23,9 @@ const fetchAgents = async () => {
   }
 };
 
-fetchAgents();
+onMounted(() => {
+  fetchAgents();
+});
 
 const handleCardClick = (uuid: string, displayName: string) => {
   router.push(`/agents/${uuid}`);
@@ -33,9 +35,6 @@ const handleCardClick = (uuid: string, displayName: string) => {
 
 <template>
   <div class="relative w-full">
-    <!--  <div>
-      <NuxtImg src="/agents.webp" alt="img" class="absolute w-full z-0" />
-    </div> -->
     <Carousel
       ref="carousel"
       orientation="vertical"

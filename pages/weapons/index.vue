@@ -2,9 +2,7 @@
 import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
-import { useIsLoadingStore } from "@/store/loaderStore";
 
-const loaderStore = useIsLoadingStore();
 
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
@@ -13,10 +11,8 @@ const selectedCategory = ref("");
 
 const arsenalRequest = async () => {
   try {
-    loaderStore.set(true);
     const request = await fetch("https://valorant-api.com/v1/weapons");
     const { data } = await request.json();
-    arsenalStore.setArsenal(data);
     if (selectedCategory.value) {
       const filterCategory = data.filter(function (item: any) {
         return (
@@ -24,20 +20,16 @@ const arsenalRequest = async () => {
         );
       });
       arsenalStore.setArsenal(filterCategory);
+    } else {
+      arsenalStore.setArsenal(data);
     }
   } catch (e) {
     console.error(e);
   }
-  loaderStore.set(false);
-};
-
-const handleCardClick = (uuid: string, displayName: string) => {
-  router.push(`/weapons/${uuid}`);
-  useSeoMeta({ title: `VALORANT GUNS : ${displayName.toUpperCase()}` });
 };
 
 const handleCategoryClick = (category: string) => {
-  selectedCategory.value = category;
+  selectedCategory.value = category === "ALL WEAPON" ? "" : category;
   arsenalRequest();
   dropDownStore.toggleDropDown();
 };
@@ -64,8 +56,12 @@ onUnmounted(() => {
           class="flex flex-row justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
           @click="dropDownStore.toggleDropDown"
         >
-          <span>ALL WEAPON</span>
-          <div>p</div>
+          <span>{{
+            selectedCategory ? selectedCategory.toUpperCase() : "ALL WEAPON"
+          }}</span>
+          <div>
+            <Icon name="gridicons:dropdown" size="30" />
+          </div>
         </div>
         <div
           class="text-black absolute top-full left-0 bg-white w-full border border-black"
@@ -84,10 +80,10 @@ onUnmounted(() => {
     <div class="flex flex-wrap py-7">
       <div v-for="gun in arsenalStore.arsenal" :key="gun.uuid" class="w-1/2">
         <div
-          class="text-white p-5 hover:bg-slate-500 flex flex-col justify-between h-full"
+          class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between h-full"
         >
           <span
-            class="p-2"
+            class="p-2 text-5xl"
             @click="handleCardClick(gun.uuid, gun.displayName)"
             >{{ gun.displayName }}</span
           >
