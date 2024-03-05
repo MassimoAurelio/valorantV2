@@ -8,7 +8,6 @@ const dropDownStore = useBurgerMenu();
 const router = useRouter();
 const selectedCategory = ref("");
 
-
 const arsenalRequest = async () => {
   try {
     const request = await fetch("https://valorant-api.com/v1/weapons");
@@ -26,6 +25,15 @@ const arsenalRequest = async () => {
   } catch (e) {
     console.error(e);
   }
+};
+const showContent = ref<boolean[]>([]);
+const showImage = ref<boolean[]>([]);
+
+const toggleCardItem = (isHovering: boolean, index: number) => {
+  showContent.value = Array(arsenalStore.arsenal.length).fill(false);
+  showImage.value = Array(arsenalStore.arsenal.length).fill(true);
+  showContent.value[index] = isHovering;
+  showImage.value[index] = !isHovering;
 };
 
 const handleCategoryClick = (category: string) => {
@@ -78,16 +86,26 @@ onUnmounted(() => {
       </div>
     </div>
     <div class="flex flex-wrap py-7">
-      <div v-for="gun in arsenalStore.arsenal" :key="gun.uuid" class="w-1/2 cursor-pointer">
+      <div
+        v-for="(gun, index) in arsenalStore.arsenal"
+        :key="gun.uuid"
+        class="w-1/2 cursor-pointer"
+      >
         <div
-          class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between h-full"
+          class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
+          @mouseover="toggleCardItem(true, index)"
+          @mouseleave="toggleCardItem(false, index)"
         >
           <span class="p-2 text-5xl">{{ gun.displayName }}</span>
           <NuxtImg
+            v-if="showImage[index]"
             :src="gun.displayIcon"
             alt="Gun Image"
             class="object-contain h-40 w-full"
           />
+          <div v-if="showContent[index]">
+            {{ gun.category }}
+          </div>
         </div>
       </div>
     </div>
