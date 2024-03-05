@@ -5,7 +5,6 @@ import { WEAPON_CATEGORY } from "@/types";
 
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
-const router = useRouter();
 const selectedCategory = ref("");
 
 const arsenalRequest = async () => {
@@ -25,15 +24,6 @@ const arsenalRequest = async () => {
   } catch (e) {
     console.error(e);
   }
-};
-const showContent = ref<boolean[]>([]);
-const showImage = ref<boolean[]>([]);
-
-const toggleCardItem = (isHovering: boolean, index: number) => {
-  showContent.value = Array(arsenalStore.arsenal.length).fill(false);
-  showImage.value = Array(arsenalStore.arsenal.length).fill(true);
-  showContent.value[index] = isHovering;
-  showImage.value[index] = !isHovering;
 };
 
 const handleCategoryClick = (category: string) => {
@@ -93,18 +83,24 @@ onUnmounted(() => {
       >
         <div
           class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
-          @mouseover="toggleCardItem(true, index)"
-          @mouseleave="toggleCardItem(false, index)"
+          @mouseover="arsenalStore.toggleCardItem(true, index)"
+          @mouseleave="arsenalStore.toggleCardItem(false, index)"
         >
           <span class="p-2 text-5xl">{{ gun.displayName }}</span>
           <NuxtImg
-            v-if="showImage[index]"
+            v-if="arsenalStore.showImage[index]"
             :src="gun.displayIcon"
             alt="Gun Image"
             class="object-contain h-40 w-full"
           />
-          <div v-if="showContent[index]">
-            {{ gun.category }}
+
+          <div
+            class="flex flex-row justify-center items-center gap-5 h-dvh text-2xl font-bold"
+            v-if="arsenalStore.showContent[index]"
+          >
+            <div>
+              TYPES // {{ gun.category.replace("EEquippableCategory::", "") }}
+            </div>
           </div>
         </div>
       </div>

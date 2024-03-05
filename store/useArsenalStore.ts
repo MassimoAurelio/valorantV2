@@ -1,4 +1,4 @@
-import type { IArsenal, IShopData } from "@/types";
+import type { IArsenal } from "@/types";
 
 export const useArsenalStore = defineStore({
   id: "arsenal",
@@ -8,6 +8,8 @@ export const useArsenalStore = defineStore({
     category: {} as IArsenal[],
     dynamicGuns: {} as IArsenal,
     skins: [] as IArsenal[],
+    showContent: ref<boolean[]>([]),
+    showImage: ref<boolean[]>([]),
   }),
 
   actions: {
@@ -24,6 +26,12 @@ export const useArsenalStore = defineStore({
 
     setSkins(skins: IArsenal[]) {
       this.skins = skins;
+    },
+    toggleCardItem(isHovering: boolean, index: number) {
+      this.showContent = Array(this.arsenal.length).fill(false);
+      this.showImage = Array(this.arsenal.length).fill(true);
+      this.showContent[index] = isHovering;
+      this.showImage[index] = !isHovering;
     },
   },
 });

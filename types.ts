@@ -39,6 +39,7 @@ export interface IShopData {
   cost: number;
 }
 
+
 export interface ISkins {
   contentTierUuid: string;
   displayIcon: string;
