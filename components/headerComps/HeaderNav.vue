@@ -33,7 +33,7 @@ const headerStore = headerNavStore();
             headerStore.hasDropdownData(item.id)
           "
         >
-          <ul class="relative">
+          <ul class="relative" v-auto-animate>
             <li
               v-for="dropdownItem in headerStore.getDropdownData(item.id)"
               :key="dropdownItem.name"

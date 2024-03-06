@@ -3,6 +3,7 @@ import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
 
+
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const selectedCategory = ref("");
@@ -85,8 +86,11 @@ onUnmounted(() => {
           class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
           @mouseover="arsenalStore.toggleCardItem(true, index)"
           @mouseleave="arsenalStore.toggleCardItem(false, index)"
+          
         >
-          <span class="p-2 text-5xl">{{ gun.displayName }}</span>
+          <span class="p-2 text-5xl font-bold">{{
+            gun.displayName.toUpperCase()
+          }}</span>
           <NuxtImg
             v-if="arsenalStore.showImage[index]"
             :src="gun.displayIcon"
@@ -99,7 +103,10 @@ onUnmounted(() => {
             v-if="arsenalStore.showContent[index]"
           >
             <div>
-              TYPES // {{ gun.category.replace("EEquippableCategory::", "") }}
+              TYPES //
+              {{
+                gun.category.replace("EEquippableCategory::", "").toUpperCase()
+              }}
             </div>
           </div>
         </div>

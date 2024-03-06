@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
+    "@formkit/auto-animate/nuxt",
     "nuxt-icon",
     "@nuxt/image",
     "nuxt-delay-hydration",
