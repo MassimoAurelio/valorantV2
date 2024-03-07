@@ -5,8 +5,8 @@ export const usePopupStore = defineStore({
   }),
 
   actions: {
-    togglePopup() {
-      this.showPopup = !this.showPopup;
+    togglePopup(show: boolean) {
+      this.showPopup = show;
     },
   },
 });

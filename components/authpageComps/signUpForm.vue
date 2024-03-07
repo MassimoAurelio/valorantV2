@@ -9,15 +9,13 @@ const buttonsStore = socialsButtonsStore();
   <div class="flex justify-end items-center min-h-screen">
     <AuthConstructor>
       <template #title>
-        <h1>Какой у вас адрес электронной почты?</h1>
-        <h2>Не волнуйтесь, мы никому не скажем.</h2>
+        <h1>Вход</h1>
       </template>
       <template #inputs>
         <UIInput placeholder="Email" />
+        <UIInput placeholder="Password" />
       </template>
-
       <template #socials-button>
-        <p>ТАКЖЕ МОЖНО СОЗДАТЬ УЧЕТНУЮ ЗАПИСЬ С ПОМОЩЬЮ</p>
         <div class="flex justify-center item-center gap-3">
           <ul v-for="item in buttonsStore.item" :key="item.img">
             <li><Icon :name="item.img" size="25" /></li>
@@ -27,12 +25,7 @@ const buttonsStore = socialsButtonsStore();
 
       <template #check-box>
         <input type="checkbox" />
-        <p>
-          Да; Riot может использовать и передавать мой адрес электронной почты
-          сторонним компаниям (например, Google, Twitch) для персонализации
-          рекламы, а также отправлять мне информацию о новых релизах,
-          обновлениях игр, событиях и других материалах, связанных с Riot.
-        </p>
+        <p>Не выходить из учетной записи</p>
       </template>
 
       <template #submit-btn>
@@ -44,10 +37,14 @@ const buttonsStore = socialsButtonsStore();
       </template>
 
       <template #restore-btn>
-        <div class="flex justify-center items-center">
-          <NuxtLink to="/signup">
+        <div class="flex flex-col justify-center items-center">
+          <span>
+            <a href="">НЕ МОЖЕТЕ ЗАЙТИ?</a>
+          </span>
+
+          <NuxtLink to="/autharization">
             <span>
-              <a href="">УЖЕ ЕСТЬ УЧЕТНАЯ ЗАПИСЬ?</a>
+              <a href="">СОЗДАТЬ УЧЕТНУЮ ЗАПИСЬ</a>
             </span>
           </NuxtLink>
         </div>

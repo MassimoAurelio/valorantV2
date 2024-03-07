@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <div>
-      <AuthpageCompsAuthForm />
-    </div>
-  </section>
+
+    <AuthpageCompsAuthForm />
+
 </template>

@@ -58,14 +58,15 @@ const footerButtons = useFooterButtonStore();
     </div>
     <div class="flex flex-row item-center">
       <div class="p-2 bg-zinc-700 rounded-sm">
-        <img src="/public/16eu.jpg" alt="img" />
+        <img src="/16eu.jpg" alt="img" />
       </div>
       <div class="p-2 bg-zinc-700 rounded-sm">
-        <img src="/public/in-game.png" alt="img" />
+        <img src="/in-game.png" alt="img" />
       </div>
       <div class="p-2 bg-zinc-700 rounded-sm">
-        <img src="/public/violence.png" alt="img" />
+        <img src="/violence.png" alt="img" />
       </div>
+     
     </div>
   </footer>
 </template>
