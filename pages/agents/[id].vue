@@ -117,7 +117,7 @@ onMounted(() => {
           >
             <div class="cursor-pointer">
               <h2
-                class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
+                class="text-8xl font-semibold transition-transform transform hover:translate-x-2 z-50"
               >
                 {{ agent?.displayName.toUpperCase() }}
               </h2>

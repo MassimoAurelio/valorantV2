@@ -2,35 +2,29 @@
 import {
   useFooterSocialsStore,
   useFooterInfoButtonsStore,
-  useFooterImgStore,
+  useFooterButtonStore,
 } from "@/store/useFooter";
 
 const footerImgStore = useFooterSocialsStore();
 const footerInfoButton = useFooterInfoButtonsStore();
-const footerImg = useFooterImgStore();
+const footerButtons = useFooterButtonStore();
 </script>
 
 <template>
   <footer class="bg-zinc-950 flex flex-col justify-center items-center gap-5">
     <div class="bg-zinc-700 h-24 flex justify-center items-center w-full">
-      <div>
-        <ul class="flex flex-row justify-center items-center gap-5 text-white">
+      <div class="flex">
+        <ul
+          class="flex flex-row justify-center items-center gap-5 text-white"
+          v-for="item in footerButtons.item"
+          :key="item.href"
+        >
           <li class="p-2 hover:bg-zinc-500 rounded-sm">
-            <a href="https://playvalorant.com/en-gb/download/" target="_blank"
-              >Download Game Client</a
-            >
-          </li>
-          <li class="p-2 hover:bg-zinc-500 rounded-sm">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.riotgames.mobile.leagueconnect&referrer=singular_click_id%3D55d6b54f-0d76-429f-84fa-2a65ff040153"
-              target="_blank"
-              >Download Riot Mobile Companion App</a
-            >
+            <a :href="item.href" target="_blank">{{ item.name }}</a>
           </li>
         </ul>
       </div>
     </div>
-
     <div
       class="h-24 flex items-center justify-center gap-3 cursor-pointer w-full"
     >
@@ -40,7 +34,6 @@ const footerImg = useFooterImgStore();
         </li>
       </ul>
     </div>
-
     <div
       class="bg-zinc-950 text-zinc-500 text-sm flex justify-center items-center w-full"
     >
@@ -50,7 +43,6 @@ const footerImg = useFooterImgStore();
         service marks, and/or registered trademarks of Riot Games, Inc.
       </p>
     </div>
-
     <div
       class="flex justify-center items-center gap-3 text-white w-full min-h-20"
     >
@@ -64,7 +56,6 @@ const footerImg = useFooterImgStore();
         </li>
       </ul>
     </div>
-
     <div class="flex flex-row item-center">
       <div class="p-2 bg-zinc-700 rounded-sm">
         <img src="/public/16eu.jpg" alt="img" />

@@ -21,6 +21,27 @@ export const useFooterSocialsStore = defineStore({
   }),
 });
 
+interface IFooterButtons {
+  name: string;
+  href: string;
+}
+
+export const useFooterButtonStore = defineStore({
+  id: "footer-button",
+  state: () => ({
+    item: [
+      {
+        name: "Download Game Client",
+        href: "https://playvalorant.com/en-gb/download/",
+      },
+      {
+        name: "Download Riot Mobile Companion App",
+        href: "https://play.google.com/store/apps/details?id=com.riotgames.mobile.leagueconnect&referrer=singular_click_id%3D55d6b54f-0d76-429f-84fa-2a65ff040153",
+      },
+    ] as IFooterButtons[],
+  }),
+});
+
 export const useFooterInfoButtonsStore = defineStore({
   id: "infoButton",
   state: () => ({
