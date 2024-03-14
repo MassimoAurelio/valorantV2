@@ -17,7 +17,7 @@ const { title = "Войти" } = props;
       <div class="flex flex-col justify-center items-center">
         <slot name="title"></slot>
       </div>
-      <div clclass="flex flex-col gap-5">
+      <div class="flex flex-col gap-3">
         <slot name="inputs"> </slot>
       </div>
 
