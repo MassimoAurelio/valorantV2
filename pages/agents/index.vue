@@ -34,7 +34,7 @@ const handleCardClick = (uuid: string, displayName: string) => {
 </script>
 
 <template>
-  <div class="relative w-full">
+  <div class="relative w-full flex items-center">
     <Carousel
       ref="carousel"
       orientation="vertical"
@@ -60,5 +60,12 @@ const handleCardClick = (uuid: string, displayName: string) => {
         </CarouselItem>
       </CarouselContent>
     </Carousel>
+    <div class="text-white flex flex-col gap-5 w-80">
+      <p>// CHECK THE HEADCOUNT</p>
+      <p>
+        Find more ways to plant the Spike and style on your enemies with
+        scrappers, strategists, and hunters of every description
+      </p>
+    </div>
   </div>
 </template>

@@ -21,12 +21,14 @@ const { title = "Войти" } = props;
         <slot name="inputs"> </slot>
       </div>
 
-      <div class="flex flex-col items-center justify-center gap-3">
-        <slot name="socials-button"></slot>
+      <div>
+        <label class="flex gap-2 text-xs">
+          <slot name="check-box"></slot>
+        </label>
       </div>
 
-      <div class="flex text-xs gap-2">
-        <slot name="check-box"></slot>
+      <div class="flex flex-col items-center justify-center gap-3">
+        <slot name="socials-button"></slot>
       </div>
 
       <div class="flex justify-center item-center">

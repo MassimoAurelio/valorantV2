@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { socialsButtonsStore } from "@/store/authPageStore";
 import AuthConstructor from "@/components/ui/authPopup/authFormConstructor.vue";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const buttonsStore = socialsButtonsStore();
 </script>
@@ -24,13 +26,13 @@ const buttonsStore = socialsButtonsStore();
       </template>
 
       <template #check-box>
-        <input type="checkbox" />
-        <p>Не выходить из учетной записи</p>
+        <Checkbox id="terms" />
+        <Label for="terms"> Не выходить из учетной записи</Label>
       </template>
 
       <template #submit-btn>
         <button
-          class="w-16 h-12 rounded-sm border border-sky-500 flex items-center justify-center"
+          class="w-16 h-12 rounded-sm border border-slate-300 flex items-center justify-center"
         >
           <Icon name="mingcute:arrow-right-fill" size="20" />
         </button>
