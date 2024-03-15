@@ -33,15 +33,18 @@ const headerStore = headerNavStore();
             headerStore.hasDropdownData(item.id)
           "
         >
-          <ul class="relative" v-auto-animate>
+          <ul class="relative">
             <li
               v-for="dropdownItem in headerStore.getDropdownData(item.id)"
               :key="dropdownItem.name"
               class="text-white p-1 hover:bg-zinc-700 rounded-md min-w-44"
             >
-              <NuxtLink :to="`/${dropdownItem.name.toLowerCase()}`">
-                {{ dropdownItem.name }}</NuxtLink
+              <NuxtLink
+                :to="`/${dropdownItem.name.toLowerCase()}`"
+                class="block w-full cursor-pointer"
               >
+                {{ dropdownItem.name }}
+              </NuxtLink>
             </li>
           </ul>
         </div>

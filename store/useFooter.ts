@@ -81,3 +81,15 @@ export const useFooterImgStore = defineStore({
     ] as IImg[],
   }),
 });
+
+export const useFooterAuthLayout = defineStore({
+  id: "footerAuthLayout",
+  state: () => ({
+    items: [
+      { name: "ПОДДЕРЖКА" },
+      { name: "УВЕДОМЛЕНИЕ ОБ ИСПОЛЬЗОВАНИИ КОНФИДЕНЦИАЛЬНЫХ ДАННЫХ" },
+      { name: "УСЛОВИЯ ПРЕДОСТАВЛЕНИЯ УСЛУГ" },
+      { name: "НАСТРОЙКИ COOKIE" },
+    ] as IInfoButton[],
+  }),
+});

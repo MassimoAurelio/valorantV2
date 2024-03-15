@@ -8,6 +8,9 @@ const buttonsStore = socialsButtonsStore();
 
 <template>
   <div class="flex justify-end items-center min-h-screen">
+    <div class="absolute left-0 top-20">
+      <NuxtLink to="/"> <NuxtImg src="/logo.svg" width="150px" /></NuxtLink>
+    </div>
     <AuthConstructor>
       <template #title>
         <div>Какой у вас адрес электронной почты?</div>

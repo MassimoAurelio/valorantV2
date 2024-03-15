@@ -9,6 +9,9 @@ const buttonsStore = socialsButtonsStore();
 
 <template>
   <div class="flex justify-end items-center min-h-screen">
+    <div class="absolute left-0 top-20">
+      <NuxtLink to="/"> <NuxtImg src="/logo.svg" width="150px" /></NuxtLink>
+    </div>
     <AuthConstructor>
       <template #title>
         <h1>Вход</h1>
@@ -17,6 +20,7 @@ const buttonsStore = socialsButtonsStore();
         <UIInput placeholder="Email" />
         <UIInput placeholder="Password" />
       </template>
+
       <template #socials-button>
         <div class="flex justify-center item-center gap-3">
           <ul v-for="item in buttonsStore.item" :key="item.img">
@@ -39,7 +43,7 @@ const buttonsStore = socialsButtonsStore();
       </template>
 
       <template #restore-btn>
-        <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center text-sm">
           <span>
             <a href="">НЕ МОЖЕТЕ ЗАЙТИ?</a>
           </span>

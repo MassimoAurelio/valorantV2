@@ -6,7 +6,9 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useScreenStore } from "@/store/resizeStore";
+import { useAbilitiesStore } from "@/store/useAbilitiesStore";
 
+const abilitiesStore = useAbilitiesStore();
 const agentsStore = useAgentsStore();
 const resizeStore = useScreenStore();
 const route = useRoute();
@@ -18,6 +20,7 @@ const fetchDynamicsAgents = async (uuid: any) => {
     const response = await fetch(`https://valorant-api.com/v1/agents/${uuid}`);
     const { data } = await response.json();
     agentsStore.setDynamics(data);
+    abilitiesStore.setAbilities(data.abilities);
   } catch (error) {
     console.error("WARNING:", error);
   }
@@ -154,6 +157,17 @@ onMounted(() => {
       </div>
     </div>
   </section>
-</template>
 
-<style scoped></style>
+  <section>
+    <div class="flex flex-col gap-2 pb-16">
+      <div class="text-white">SPECIAL ABILITIES</div>
+      <div class="flex gap-5 justify-center items-center text-white">
+        <ul v-for="item in abilitiesStore.abilities" :key="item.displayName">
+          <li>{{ item.displayName }}</li>
+          <NuxtImg :src="item.displayIcon" sizes="20"></NuxtImg>
+          <p>{{ item.description }}</p>
+        </ul>
+      </div>
+    </div>
+  </section>
+</template>
