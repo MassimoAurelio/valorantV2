@@ -63,6 +63,12 @@ const carousel = computed(() => {
   }
 });
 
+const showAbilities = ref(abilitiesStore.value.abilities.map(() => false));
+
+const toggleAbilities = (index: number) => {
+  showAbilities.value[index] = !showAbilities.value[index];
+};
+
 onMounted(() => {
   fetchDynamicsAgents(uuid);
 });
@@ -159,13 +165,21 @@ onMounted(() => {
   </section>
 
   <section>
-    <div class="flex flex-col gap-2 pb-16">
-      <div class="text-white">SPECIAL ABILITIES</div>
-      <div class="flex gap-5 justify-center items-center text-white">
-        <ul v-for="item in abilitiesStore.abilities" :key="item.displayName">
-          <li>{{ item.displayName }}</li>
-          <NuxtImg :src="item.displayIcon" sizes="20"></NuxtImg>
-          <p>{{ item.description }}</p>
+    <div class="flex flex-col gap-5 py-20">
+      <div class="text-white text-6xl font-bold">SPECIAL ABILITIES</div>
+      <div class="flex gap-5 items-center text-white">
+        <ul
+          v-for="(item, index) in abilitiesStore.abilities"
+          :key="item.displayName"
+          class="border border-bg-zinc-900 p-3"
+        >
+          <li @click="toggleAbilities(index)">
+            <NuxtImg :src="item.displayIcon" sizes="20"></NuxtImg>
+          </li>
+          <div v-if="showAbilities[index]">
+            {{ item.displayName }}
+            <p>{{ item.description }}</p>
+          </div>
         </ul>
       </div>
     </div>
