@@ -15,6 +15,8 @@ export const useArsenalStore = defineStore({
   actions: {
     setArsenal(arsenal: IArsenal[]) {
       this.arsenal = arsenal;
+      this.showContent = Array(arsenal.length).fill(false);
+      this.showImage = Array(arsenal.length).fill(true);
     },
 
     setCategory(category: IArsenal[]) {

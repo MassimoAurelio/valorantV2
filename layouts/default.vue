@@ -4,9 +4,9 @@ const loaderStore = useIsLoadingStore();
 </script>
 
 <template>
-  <section class="min-h-screen bg-slate-900">
+  <section class="min-h-svh bg-slate-900">
     <LayoutHeader />
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-[200vh]">
       <slot />
     </div>
     <LayoutFooter />

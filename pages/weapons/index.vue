@@ -3,7 +3,6 @@ import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
 
-
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const selectedCategory = ref("");
@@ -86,7 +85,6 @@ onUnmounted(() => {
           class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
           @mouseover="arsenalStore.toggleCardItem(true, index)"
           @mouseleave="arsenalStore.toggleCardItem(false, index)"
-          
         >
           <span class="p-2 text-5xl font-bold">{{
             gun.displayName.toUpperCase()
@@ -96,6 +94,7 @@ onUnmounted(() => {
             :src="gun.displayIcon"
             alt="Gun Image"
             class="object-contain h-40 w-full"
+            loading="lazy"
           />
 
           <div

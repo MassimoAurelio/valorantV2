@@ -103,10 +103,7 @@ export const GAME_INFO_DATA: IDropdowninfo[] = [
   },
   {
     name: "WEAPONS",
-  },
-  {
-    name: "PREMIER",
-  },
+  }
 ];
 
 export const SUPPORT_DATA: IDropdowninfo[] = [

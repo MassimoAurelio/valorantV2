@@ -15,12 +15,14 @@ const route = useRoute();
 const router = useRouter();
 const uuid = route.params.id;
 
+
 const fetchDynamicsAgents = async (uuid: any) => {
   try {
     const response = await fetch(`https://valorant-api.com/v1/agents/${uuid}`);
     const { data } = await response.json();
     agentsStore.setDynamics(data);
     abilitiesStore.setAbilities(data.abilities);
+    
   } catch (error) {
     console.error("WARNING:", error);
   }
@@ -159,11 +161,11 @@ onMounted(() => {
   </section>
 
   <section>
-    <div class="flex flex-col gap-5 py-20">
-      <p class="text-white text-6xl font-bold">SPECIAL ABILITIES</p>
+    <div class="flex flex-col gap-5 py-20 ">
+      <h1 class="text-white text-5xl font-bold">SPECIAL ABILITIES</h1>
       <div class="flex gap-5 items-center text-white">
         <ul
-          class="border border-bg-zinc-900 p-3"
+          class="border border-bg-zinc-900 cursor-pointer p-3 max-w-32"
           v-for="(item, index) in abilitiesStore.abilities"
           :key="index"
           @click="abilitiesStore.openAbilities(index)"
