@@ -63,7 +63,7 @@ const carousel = computed(() => {
   }
 });
 
-const showAbilities = ref(abilitiesStore.value.abilities.map(() => false));
+const showAbilities = ref<boolean[]>([]);
 
 const toggleAbilities = (index: number) => {
   showAbilities.value[index] = !showAbilities.value[index];
@@ -170,7 +170,7 @@ onMounted(() => {
       <div class="flex gap-5 items-center text-white">
         <ul
           v-for="(item, index) in abilitiesStore.abilities"
-          :key="item.displayName"
+          :key="index"
           class="border border-bg-zinc-900 p-3"
         >
           <li @click="toggleAbilities(index)">

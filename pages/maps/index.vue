@@ -38,7 +38,6 @@ mapsReq();
         >
           <div class="w-1/2">
             <NuxtImg :src="map.splash" alt="map img" />
-          <!--   <img :src="map.splash" alt="map img" /> -->
           </div>
           <div
             class="absolute right-0 bg-gray-700 max-w-72 rounded-lg p-3 text-white"
