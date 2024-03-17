@@ -7,14 +7,19 @@ import {
 } from "@/components/ui/carousel";
 import { useScreenStore } from "@/store/resizeStore";
 import { useAbilitiesStore } from "@/store/useAbilitiesStore";
+import {
+  useGetLayoutClasses,
+  useGetImageStyles,
+} from "@/hooks/resizeStoreLogic";
 
 const abilitiesStore = useAbilitiesStore();
 const agentsStore = useAgentsStore();
 const resizeStore = useScreenStore();
+const layoutClasses = useGetLayoutClasses();
+const getImageStyles = useGetImageStyles();
 const route = useRoute();
 const router = useRouter();
 const uuid = route.params.id;
-
 
 const fetchDynamicsAgents = async (uuid: any) => {
   try {
@@ -22,7 +27,6 @@ const fetchDynamicsAgents = async (uuid: any) => {
     const { data } = await response.json();
     agentsStore.setDynamics(data);
     abilitiesStore.setAbilities(data.abilities);
-    
   } catch (error) {
     console.error("WARNING:", error);
   }
@@ -32,39 +36,6 @@ const handleCardClick = (uuid: string, displayName: string) => {
   useSeoMeta({ title: `VALORANT AGENT : ${displayName.toUpperCase()}` });
 };
 
-const qwe = computed(() => {
-  if (resizeStore.platform === "desctope") {
-    return "relative flex flex-row items-center gap-96 justify-center";
-  }
-  if (resizeStore.platform === "tablet") {
-    return "relative grid-cols-3";
-  }
-  if (resizeStore.platform === "mobile") {
-    return "relative flex flex-col item-center";
-  }
-});
-
-const img = computed(() => {
-  if (resizeStore.platform === "desctope") {
-    return "absolute flex justify-center items-center w-7/12";
-  }
-  if (resizeStore.platform === "tablet") {
-    return "absolute right-0 w-7/12";
-  }
-  if (resizeStore.platform === "mobile") {
-    return "";
-  }
-});
-
-const carousel = computed(() => {
-  if (resizeStore.platform === "desctope") {
-    return "vertical";
-  }
-  if (resizeStore.platform === "tablet" || resizeStore.platform === "mobile") {
-    return "horizontal";
-  }
-});
-
 onMounted(() => {
   fetchDynamicsAgents(uuid);
 });
@@ -72,7 +43,7 @@ onMounted(() => {
 
 <template>
   <section class="flex flex-row items-center justify-center relative py-3.5">
-    <div :class="qwe">
+    <div :class="layoutClasses">
       <Carousel
         class="relative w-full max-w-sm"
         v-if="resizeStore.platform === 'mobile'"
@@ -130,7 +101,7 @@ onMounted(() => {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-      <div :class="img">
+      <div :class="getImageStyles">
         <NuxtImg
           v-if="agentsStore?.dynamicAgents?.fullPortrait"
           :src="agentsStore?.dynamicAgents?.fullPortrait"
@@ -160,31 +131,5 @@ onMounted(() => {
     </div>
   </section>
 
-  <section>
-    <div class="flex flex-col gap-5 py-20 ">
-      <h1 class="text-white text-5xl font-bold">SPECIAL ABILITIES</h1>
-      <div class="flex gap-5 items-center text-white">
-        <ul
-          class="border border-bg-zinc-900 cursor-pointer p-3 max-w-32"
-          v-for="(item, index) in abilitiesStore.abilities"
-          :key="index"
-          @click="abilitiesStore.openAbilities(index)"
-        >
-          <li>
-            <NuxtImg :src="item.displayIcon" sizes="20"></NuxtImg>
-          </li>
-        </ul>
-      </div>
-      <template v-for="(item, index) in abilitiesStore.abilities">
-        <div v-if="abilitiesStore.showAbilities[index]">
-          <div class="text-slate-400">
-            {{ item.displayName.toUpperCase() }}
-          </div>
-          <div class="w-72 text-white">
-            <p>{{ item.description }}</p>
-          </div>
-        </div>
-      </template>
-    </div>
-  </section>
+  <AgentsSpecialsAbilities />
 </template>

@@ -2,7 +2,7 @@ import { computed } from "vue";
 import { useScreenStore } from "@/store/resizeStore";
 const resizeStore = useScreenStore();
 
-export const useQwe = () => {
+export const useGetLayoutClasses = () => {
   return computed(() => {
     if (resizeStore.platform === "desctope") {
       return "relative flex flex-row items-center gap-96 justify-center";
@@ -16,7 +16,7 @@ export const useQwe = () => {
   });
 };
 
-export const useImg = () => {
+export const useGetImageStyles = () => {
   return computed(() => {
     if (resizeStore.platform === "desctope") {
       return "absolute flex justify-center items-center w-7/12";
