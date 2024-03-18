@@ -7,16 +7,11 @@ import {
 } from "@/components/ui/carousel";
 import { useScreenStore } from "@/store/resizeStore";
 import { useAbilitiesStore } from "@/store/useAbilitiesStore";
-import {
-  useGetLayoutClasses,
-  useGetImageStyles,
-} from "@/hooks/resizeStoreLogic";
+
 
 const abilitiesStore = useAbilitiesStore();
 const agentsStore = useAgentsStore();
 const resizeStore = useScreenStore();
-const layoutClasses = useGetLayoutClasses();
-const getImageStyles = useGetImageStyles();
 const route = useRoute();
 const router = useRouter();
 const uuid = route.params.id;
@@ -36,14 +31,46 @@ const handleCardClick = (uuid: string, displayName: string) => {
   useSeoMeta({ title: `VALORANT AGENT : ${displayName.toUpperCase()}` });
 };
 
+const qwe = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "relative flex flex-row items-center gap-96 justify-center";
+  }
+  if (resizeStore.platform === "tablet") {
+    return "relative grid-cols-3";
+  }
+  if (resizeStore.platform === "mobile") {
+    return "relative flex flex-col item-center";
+  }
+});
+const img = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "absolute flex justify-center items-center w-7/12";
+  }
+  if (resizeStore.platform === "tablet") {
+    return "absolute right-0 w-7/12";
+  }
+  if (resizeStore.platform === "mobile") {
+    return "";
+  }
+});
+const carousel = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "vertical";
+  }
+  if (resizeStore.platform === "tablet" || resizeStore.platform === "mobile") {
+    return "horizontal";
+  }
+});
+
 onMounted(() => {
   fetchDynamicsAgents(uuid);
+  
 });
 </script>
 
 <template>
   <section class="flex flex-row items-center justify-center relative py-3.5">
-    <div :class="layoutClasses">
+    <div :class="qwe">
       <Carousel
         class="relative w-full max-w-sm"
         v-if="resizeStore.platform === 'mobile'"
@@ -101,7 +128,7 @@ onMounted(() => {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-      <div :class="getImageStyles">
+      <div :class="img">
         <NuxtImg
           v-if="agentsStore?.dynamicAgents?.fullPortrait"
           :src="agentsStore?.dynamicAgents?.fullPortrait"
