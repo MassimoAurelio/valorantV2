@@ -8,16 +8,11 @@ import {
 
 const mapStore = useMapStore();
 
-const showPopup = ref(false);
-
-const togglePopup = () => {
-  showPopup.value = !showPopup.value;
-};
-
 const mapsReq = async () => {
   try {
     const response = await fetch("https://valorant-api.com/v1/maps");
     const { data } = await response.json();
+    mapStore.setDynamicMap(data);
     mapStore.setMaps(data);
   } catch {}
 };
@@ -50,13 +45,14 @@ mapsReq();
           >
             <p class="z-100">{{ map.displayName }}</p>
             <p>{{ map.narrativeDescription }}</p>
-            <button class="p-2" @click="togglePopup()">
+            <button class="p-2" @click="mapStore.togglePopup()">
               <p>View gallery</p>
             </button>
           </div>
         </CarouselItem>
+        
       </CarouselContent>
     </Carousel>
-    <MapsMapPopup v-if="showPopup" />
+    <MapsMapPopup v-if="mapStore.showPopup" />
   </section>
 </template>
