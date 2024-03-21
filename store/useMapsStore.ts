@@ -19,9 +19,24 @@ export const useMapStore = defineStore({
     setSelectedMap(map: IMaps) {
       this.selectedMap = map;
     },
-
     togglePopup() {
       this.showPopup = !this.showPopup;
+    },
+
+    handlePreviousClick() {
+      const currentIndex = this.maps.findIndex(
+        (map) => map.uuid === this.selectedMap?.uuid
+      );
+      const previousIndex =
+        (currentIndex - 1 + this.maps.length) % this.maps.length;
+      this.setSelectedMap(this.maps[previousIndex]);
+    },
+    handleNextClick() {
+      const currentIndex = this.maps.findIndex(
+        (map) => map.uuid === this.selectedMap?.uuid
+      );
+      const nextIndex = (currentIndex + 1) % this.maps.length;
+      this.setSelectedMap(this.maps[nextIndex]);
     },
   },
 });

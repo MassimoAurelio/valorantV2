@@ -3,6 +3,10 @@ import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
 
+useSeoMeta({
+  title: "VALORANT Guns: Explore Vandal, Phantom, Sherif",
+});
+
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const selectedCategory = ref("");

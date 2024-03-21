@@ -10,6 +10,10 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { onMounted } from "vue";
 
+useSeoMeta({
+  title: "VALORANT Maps: Explore Icebox, Bind, Haven, Split and Ascent",
+});
+
 const mapStore = useMapStore();
 
 const mapsReq = async () => {
@@ -23,23 +27,6 @@ const mapsReq = async () => {
   } catch (error) {
     console.error("WARNING:", error);
   }
-};
-
-const handlePreviousClick = () => {
-  const currentIndex = mapStore.maps.findIndex(
-    (map) => map.uuid === mapStore.selectedMap.uuid
-  );
-  const previousIndex =
-    (currentIndex - 1 + mapStore.maps.length) % mapStore.maps.length;
-  mapStore.setSelectedMap(mapStore.maps[previousIndex]);
-};
-
-const handleNextClick = () => {
-  const currentIndex = mapStore.maps.findIndex(
-    (map) => map.uuid === mapStore.selectedMap.uuid
-  );
-  const nextIndex = (currentIndex + 1) % mapStore.maps.length;
-  mapStore.setSelectedMap(mapStore.maps[nextIndex]);
 };
 
 onMounted(() => {
@@ -63,7 +50,6 @@ onMounted(() => {
           v-for="map in mapStore?.maps"
           :key="map.uuid"
           class="relative p-2"
-          @click="mapStore.setSelectedMap(map)"
         >
           <div class="p-1">
             <Card>
@@ -80,8 +66,8 @@ onMounted(() => {
           </div>
         </CarouselItem>
       </CarouselContent>
-      <CarouselPrevious @click="handlePreviousClick" />
-      <CarouselNext @click="handleNextClick" />
+      <CarouselPrevious @click="mapStore.handlePreviousClick" />
+      <CarouselNext @click="mapStore.handleNextClick" />
     </Carousel>
 
     <div

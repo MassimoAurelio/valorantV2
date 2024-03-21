@@ -28,8 +28,12 @@ export interface IAgents {
 export interface IMaps {
   displayName: string;
   narrativeDescription: string;
-  uuid: string | number;
+  uuid: string;
   splash: string;
+  listViewIconTall: string;
+  premierBackgroundImage: string;
+  stylizedBackgroundImage: string;
+  displayIcon: string;
 }
 
 //arsenal
@@ -38,7 +42,6 @@ export interface IShopData {
   categoryText: string;
   cost: number;
 }
-
 
 export interface ISkins {
   contentTierUuid: string;
@@ -103,7 +106,7 @@ export const GAME_INFO_DATA: IDropdowninfo[] = [
   },
   {
     name: "WEAPONS",
-  }
+  },
 ];
 
 export const SUPPORT_DATA: IDropdowninfo[] = [

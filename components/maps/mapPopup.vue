@@ -6,11 +6,16 @@ import {
 } from "@/components/ui/carousel";
 import { useMapStore } from "@/store/useMapsStore";
 
+
 const mapStore = useMapStore();
+
+const limitedMaps = computed(() => {
+  return mapStore.maps.slice(0, 5);
+});
 </script>
 
 <template>
-  <section>
+  <section v-if="mapStore.showPopup">
     <div
       v-if="mapStore.showPopup"
       class="fixed inset-0 bg-black opacity-50"
@@ -27,9 +32,46 @@ const mapStore = useMapStore();
     >
       <Carousel class="w-full">
         <CarouselContent>
-          <CarouselItem v-for="map in mapStore.maps" :key="map.uuid">
+          <CarouselItem v-for="(map, index) in limitedMaps" :key="index">
             <div class="w-full flex">
-              <NuxtImg :src="map.splash" alt="map img" />
+              <NuxtImg
+                v-if="
+                  map.stylizedBackgroundImage &&
+                  map?.uuid === mapStore.selectedMap?.uuid
+                "
+                :src="map?.stylizedBackgroundImage"
+                alt="Stylized Background Image"
+              />
+              <NuxtImg
+                v-if="map?.splash && map.uuid === mapStore?.selectedMap?.uuid"
+                :src="map?.splash"
+                alt="Splash Image"
+              />
+              <NuxtImg
+                v-if="
+                  map?.premierBackgroundImage &&
+                  map?.uuid === mapStore?.selectedMap?.uuid
+                "
+                :src="map?.premierBackgroundImage"
+                alt="Premier Background Image"
+              />
+              <NuxtImg
+                v-if="
+                  map?.listViewIconTall &&
+                  map?.uuid === mapStore?.selectedMap?.uuid
+                "
+                :src="map?.listViewIconTall"
+                alt="List View Icon Tall"
+              />
+
+              <NuxtImg
+                v-if="
+                  map?.listViewIconTall &&
+                  map?.uuid === mapStore?.selectedMap?.uuid
+                "
+                :src="map?.displayIcon"
+                alt="List View Icon Tall"
+              />
             </div>
           </CarouselItem>
         </CarouselContent>
