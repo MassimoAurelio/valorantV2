@@ -10,27 +10,21 @@ const mapStore = useMapStore();
 </script>
 
 <template>
-  <div>
-    <!-- Затемненный фон -->
+  <section>
     <div
       v-if="mapStore.showPopup"
-      class="fixed inset-0 bg-black opacity-50 z-50"
+      class="fixed inset-0 bg-black opacity-50"
     ></div>
-
-    <!-- Компонент попапа -->
+    <button
+      class="fixed flex justify-center items-start text-white top-0 right-0 z-1"
+      @click="mapStore.togglePopup()"
+    >
+      <NuxtImg src="/close.svg" class="w-10"></NuxtImg>
+    </button>
     <div
       v-if="mapStore.showPopup"
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 z-50"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
     >
-      <!-- Кнопка закрытия -->
-      <button
-        class="text-white absolute top-0 right-0 z-60"
-        @click="mapStore.togglePopup()"
-      >
-        CLOSE
-      </button>
-
-      <!-- Содержимое попапа -->
       <Carousel class="w-full">
         <CarouselContent>
           <CarouselItem v-for="map in mapStore.maps" :key="map.uuid">
@@ -41,5 +35,5 @@ const mapStore = useMapStore();
         </CarouselContent>
       </Carousel>
     </div>
-  </div>
+  </section>
 </template>

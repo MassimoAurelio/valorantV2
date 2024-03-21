@@ -12,12 +12,16 @@ const mapsReq = async () => {
   try {
     const response = await fetch("https://valorant-api.com/v1/maps");
     const { data } = await response.json();
-    mapStore.setDynamicMap(data);
+    mapStore.setSelectedMap(data);
     mapStore.setMaps(data);
-  } catch {}
+  } catch (error) {
+    console.error("WARNING:", error);
+  }
 };
 
-mapsReq();
+onMounted(() => {
+  mapsReq();
+});
 </script>
 
 <template>
@@ -33,26 +37,26 @@ mapsReq();
     >
       <CarouselContent class="-mt-1 h-[700px]">
         <CarouselItem
-          v-for="map in mapStore.maps"
+          v-for="map in mapStore?.maps"
           :key="map.uuid"
           class="relative p-2"
+          @click="mapStore.setSelectedMap(map)"
         >
           <div class="w-1/2">
             <NuxtImg :src="map.splash" alt="map img" />
           </div>
-          <div
-            class="absolute right-0 bg-gray-700 max-w-72 rounded-lg p-3 text-white"
-          >
-            <p class="z-100">{{ map.displayName }}</p>
-            <p>{{ map.narrativeDescription }}</p>
-            <button class="p-2" @click="mapStore.togglePopup()">
-              <p>View gallery</p>
-            </button>
-          </div>
         </CarouselItem>
-        
       </CarouselContent>
     </Carousel>
+    <div
+      class="absolute right-0 bg-gray-700 max-w-72 rounded-lg p-3 text-white"
+    >
+      <p class="z-100">{{ toRaw(mapStore.selectedMap)?.displayName }}</p>
+      <p>{{ toRaw(mapStore.selectedMap)?.narrativeDescription }}</p>
+      <button class="p-2" @click="mapStore.togglePopup()">
+        <p>View gallery</p>
+      </button>
+    </div>
     <MapsMapPopup v-if="mapStore.showPopup" />
   </section>
 </template>

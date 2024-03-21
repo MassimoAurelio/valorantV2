@@ -5,15 +5,19 @@ export const useMapStore = defineStore({
 
   state: () => ({
     maps: [] as IMaps[],
-    dinamicMap: {} as IMaps,
+    dynamicMap: {} as IMaps,
     showPopup: false,
+    selectedMap: null as IMaps | null,
   }),
   actions: {
     setMaps(maps: IMaps[]) {
       this.maps = maps;
     },
-    setDynamicMap(dinamicMap: IMaps) {
-      this.dinamicMap = dinamicMap;
+    setDynamicMap(dynamicMap: IMaps) {
+      this.dynamicMap = dynamicMap;
+    },
+    setSelectedMap(map: IMaps) {
+      this.selectedMap = map;
     },
 
     togglePopup() {
