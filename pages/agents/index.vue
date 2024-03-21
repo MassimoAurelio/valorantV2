@@ -34,38 +34,45 @@ const handleCardClick = (uuid: string, displayName: string) => {
 </script>
 
 <template>
-  <div class="relative w-full flex items-center">
-    <Carousel
-      ref="carousel"
-      orientation="vertical"
-      class="relative w-full max-w-xsw-full max-w-s"
-      :opts="{
-        align: 'start',
-      }"
-    >
-      <CarouselContent class="-mt-1 h-[700px]">
-        <CarouselItem
-          v-for="agent in agentsStore.agents"
-          :key="agent.uuid"
-          class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white"
-          @click.stop="handleCardClick(agent.uuid, agent.displayName)"
-        >
-          <div class="cursor-pointer">
-            <h2
-              class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
-            >
-              {{ agent.displayName.toUpperCase() }}
-            </h2>
-          </div>
-        </CarouselItem>
-      </CarouselContent>
-    </Carousel>
-    <div class="text-white flex flex-col gap-5 w-80">
-      <p>// CHECK THE HEADCOUNT</p>
-      <p>
-        Find more ways to plant the Spike and style on your enemies with
-        scrappers, strategists, and hunters of every description
-      </p>
-    </div>
+  <div
+    :style="{
+      backgroundImage: `url('/MAIN_VALORANT.jpg')`,
+      backgroundSize: 'cover',
+    }"
+  >
+    <Container class="flex items-center justify-center h-full">
+      <Carousel
+        ref="carousel"
+        orientation="vertical"
+        class="relative w-full max-w-xsw-full max-w-s"
+        :opts="{
+          align: 'start',
+        }"
+      >
+        <CarouselContent class="-mt-1 h-[700px]">
+          <CarouselItem
+            v-for="agent in agentsStore.agents"
+            :key="agent.uuid"
+            class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white"
+            @click.stop="handleCardClick(agent.uuid, agent.displayName)"
+          >
+            <div class="cursor-pointer">
+              <h2
+                class="text-8xl font-semibold transition-transform transform hover:translate-x-2"
+              >
+                {{ agent.displayName.toUpperCase() }}
+              </h2>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+      </Carousel>
+      <div class="text-white flex flex-col gap-5 w-80">
+        <p>// CHECK THE HEADCOUNT</p>
+        <p>
+          Find more ways to plant the Spike and style on your enemies with
+          scrappers, strategists, and hunters of every description
+        </p>
+      </div>
+    </Container>
   </div>
 </template>

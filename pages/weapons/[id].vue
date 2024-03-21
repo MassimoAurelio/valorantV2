@@ -21,14 +21,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    {{ arsenalStore.dynamicGuns.displayName }}
-  </div>
-  <div>
-    <NuxtImg
-      :src="arsenalStore.dynamicGuns.displayIcon"
-      alt="Gun Image"
-      class="object-contain h-40 w-full"
-    />
-  </div>
+  <Container>
+    <div>
+      {{ arsenalStore.dynamicGuns.displayName }}
+    </div>
+    <div>
+      <NuxtImg
+        :src="arsenalStore.dynamicGuns.displayIcon"
+        alt="Gun Image"
+        class="object-contain h-40 w-full"
+      />
+    </div>
+  </Container>
 </template>

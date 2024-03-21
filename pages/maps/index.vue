@@ -36,49 +36,44 @@ onMounted(() => {
 
 <template>
   <section class="relative">
-    <h1 class="text-8xl text-white font-bold">MAPS</h1>
-    <Carousel
-      ref="carousel"
-      orientation="horizontal"
-      class="relative w-full max-w-xsw-full max-w-s mx-auto"
-      :opts="{
-        align: 'start',
-      }"
-    >
-      <CarouselContent class="-mt-1 h-[700px]">
-        <CarouselItem
-          v-for="map in mapStore?.maps"
-          :key="map.uuid"
-          class="relative p-2"
+    <Container class="flex flex-col items-center justify-center h-full">
+      <h1 class="text-8xl text-white font-bold">MAPS</h1>
+      <div class="flex flex-col">
+        <Carousel
+          ref="carousel"
+          orientation="horizontal"
+          class="relative w-full max-w-xsw-full max-w-s mx-auto"
+          :opts="{
+            align: 'start',
+          }"
         >
-          <div class="p-1">
-            <Card>
-              <CardContent>
-                <div class="w-full h-full">
-                  <NuxtImg
-                    :src="map.splash"
-                    alt="map img"
-                    class="object-cover w-full h-full"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </CarouselItem>
-      </CarouselContent>
-      <CarouselPrevious @click="mapStore.handlePreviousClick" />
-      <CarouselNext @click="mapStore.handleNextClick" />
-    </Carousel>
-
-    <div
-      class="absolute right-0 bg-gray-700 max-w-72 rounded-lg p-3 text-white"
-    >
-      <p class="z-100">{{ toRaw(mapStore.selectedMap)?.displayName }}</p>
-      <p>{{ toRaw(mapStore.selectedMap)?.narrativeDescription }}</p>
-      <button class="p-2" @click="mapStore.togglePopup()">
-        <p>View gallery</p>
-      </button>
-    </div>
-    <MapsMapPopup v-if="mapStore.showPopup" />
+          <CarouselContent class="-mt-1 h-[700px]">
+            <CarouselItem
+              v-for="map in mapStore?.maps"
+              :key="map.uuid"
+              class="relative p-2"
+            >
+              <div class="p-1">
+                <Card>
+                  <CardContent>
+                    <div class="w-full h-full">
+                      <NuxtImg
+                        :src="map.splash"
+                        alt="map img"
+                        class="object-cover w-full h-full"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious @click="mapStore.handlePreviousClick" />
+          <CarouselNext @click="mapStore.handleNextClick" />
+        </Carousel>
+        <MapsMapDescription />
+      </div>
+      <MapsMapPopup v-if="mapStore.showPopup" />
+    </Container>
   </section>
 </template>

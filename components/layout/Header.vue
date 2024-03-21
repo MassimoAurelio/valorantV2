@@ -24,10 +24,10 @@ const { platform } = storeToRefs(screenStore);
             />
           </NuxtLink>
         </div>
-        <HeaderCompsHeaderNav v-if="platform === 'desctope'" />
+        <HeaderNav v-if="platform === 'desctope'" />
         <div class="absolute right-10 flex flex-row items-center gap-3">
           <div>
-            <HeaderCompsHeaderSearch v-if="platform === 'desctope'" />
+            <HeaderSearch v-if="platform === 'desctope'" />
           </div>
           <div class="hover:bg-zinc-800 p-2 rounded-xl">
             <a variant="ghost">
@@ -44,7 +44,7 @@ const { platform } = storeToRefs(screenStore);
               >Play now</UIButton
             >
           </div>
-          <PopupsHeaderPopup />
+          <HeaderPopup />
           <div>
             <UIButton
               @click="burgerNav.togglePopup"

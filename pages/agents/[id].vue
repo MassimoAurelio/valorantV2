@@ -8,7 +8,6 @@ import {
 import { useScreenStore } from "@/store/resizeStore";
 import { useAbilitiesStore } from "@/store/useAbilitiesStore";
 
-
 const abilitiesStore = useAbilitiesStore();
 const agentsStore = useAgentsStore();
 const resizeStore = useScreenStore();
@@ -64,98 +63,99 @@ const carousel = computed(() => {
 
 onMounted(() => {
   fetchDynamicsAgents(uuid);
-  
 });
 </script>
 
 <template>
   <section class="flex flex-row items-center justify-center relative py-3.5">
-    <div :class="qwe">
-      <Carousel
-        class="relative w-full max-w-sm"
-        v-if="resizeStore.platform === 'mobile'"
-        :opts="{
-          align: 'start',
-        }"
-      >
-        <CarouselContent class="w-full">
-          <CarouselItem
-            v-for="agent in agentsStore?.agents"
-            :key="agent?.uuid"
-            class="md:basis-1/2 lg:basis-1/6"
-            @click.stop="handleCardClick(agent?.uuid, agent?.displayName)"
-          >
-            <div class="p-1">
+    <Container class="flex items-center justify-center h-full">
+      <div :class="qwe">
+        <Carousel
+          class="relative w-full max-w-sm"
+          v-if="resizeStore.platform === 'mobile'"
+          :opts="{
+            align: 'start',
+          }"
+        >
+          <CarouselContent class="w-full">
+            <CarouselItem
+              v-for="agent in agentsStore?.agents"
+              :key="agent?.uuid"
+              class="md:basis-1/2 lg:basis-1/6"
+              @click.stop="handleCardClick(agent?.uuid, agent?.displayName)"
+            >
+              <div class="p-1">
+                <div class="cursor-pointer">
+                  <h2
+                    class="text-4xl text-white font-semibold transition-transform transform hover:translate-x-2"
+                  >
+                    {{ agent?.displayName.toUpperCase() }}
+                  </h2>
+                </div>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+        <Carousel
+          ref="carousel"
+          orientation="vertical"
+          v-if="
+            resizeStore.platform === 'desctope' ||
+            resizeStore.platform === 'tablet'
+          "
+          class="relative w-full max-w-xsw-full max-w-s mx-auto"
+          :opts="{
+            align: 'start',
+          }"
+        >
+          <CarouselContent class="h-[700px]">
+            <CarouselItem
+              v-for="agent in agentsStore?.agents"
+              :key="agent?.uuid"
+              class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white w-96"
+              @click.stop="handleCardClick(agent?.uuid, agent?.displayName)"
+            >
               <div class="cursor-pointer">
                 <h2
-                  class="text-4xl text-white font-semibold transition-transform transform hover:translate-x-2"
+                  class="text-8xl font-semibold transition-transform transform hover:translate-x-2 z-50"
                 >
                   {{ agent?.displayName.toUpperCase() }}
                 </h2>
               </div>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-      <Carousel
-        ref="carousel"
-        orientation="vertical"
-        v-if="
-          resizeStore.platform === 'desctope' ||
-          resizeStore.platform === 'tablet'
-        "
-        class="relative w-full max-w-xsw-full max-w-s mx-auto"
-        :opts="{
-          align: 'start',
-        }"
-      >
-        <CarouselContent class="h-[700px]">
-          <CarouselItem
-            v-for="agent in agentsStore?.agents"
-            :key="agent?.uuid"
-            class="pl-0 md:basis-1/2 lg:basis-1/6 p-2 text-8xl font-black text-white w-96"
-            @click.stop="handleCardClick(agent?.uuid, agent?.displayName)"
-          >
-            <div class="cursor-pointer">
-              <h2
-                class="text-8xl font-semibold transition-transform transform hover:translate-x-2 z-50"
-              >
-                {{ agent?.displayName.toUpperCase() }}
-              </h2>
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-      <div :class="img">
-        <NuxtImg
-          v-if="agentsStore?.dynamicAgents?.fullPortrait"
-          :src="agentsStore?.dynamicAgents?.fullPortrait"
-          alt="img"
-        />
-      </div>
-
-      <div class="flex flex-col items-start gap-5 w-4/5 text-white">
-        <span>// ROLE</span>
-
-        <div
-          class="flex flex-row justify-center items-center gap-2"
-          v-if="agentsStore.dynamicAgents.role"
-        >
-          <h1 class="font-black text-white text-5xl">
-            {{ agentsStore.dynamicAgents.role.displayName.toUpperCase() }}
-          </h1>
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
+        <div :class="img">
           <NuxtImg
-            :src="agentsStore.dynamicAgents.role.displayIcon"
-            class="w-10"
+            v-if="agentsStore?.dynamicAgents?.fullPortrait"
+            :src="agentsStore?.dynamicAgents?.fullPortrait"
+            alt="img"
           />
         </div>
 
-        <span>// BIOGRAPHY</span>
-        <div>{{ agentsStore?.dynamicAgents?.description }}</div>
+        <div class="flex flex-col items-start gap-5 w-4/5 text-white">
+          <span>// ROLE</span>
+
+          <div
+            class="flex flex-row justify-center items-center gap-2"
+            v-if="agentsStore.dynamicAgents.role"
+          >
+            <h1 class="font-black text-white text-5xl">
+              {{ agentsStore.dynamicAgents.role.displayName.toUpperCase() }}
+            </h1>
+            <NuxtImg
+              :src="agentsStore.dynamicAgents.role.displayIcon"
+              class="w-10"
+            />
+          </div>
+
+          <span>// BIOGRAPHY</span>
+          <div>{{ agentsStore?.dynamicAgents?.description }}</div>
+        </div>
       </div>
-    </div>
+    </Container>
   </section>
 
   <AgentsSpecialsAbilities />

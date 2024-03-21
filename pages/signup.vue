@@ -5,6 +5,6 @@ definePageMeta({
 </script>
 
 <template>
-  <AuthpageCompsSignUpForm />
+  <AuthPageSignUpForm />
   <LayoutFooterAuthLayout />
 </template>

@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/carousel";
 import { useMapStore } from "@/store/useMapsStore";
 
-
 const mapStore = useMapStore();
 
 const limitedMaps = computed(() => {
@@ -16,6 +15,7 @@ const limitedMaps = computed(() => {
 
 <template>
   <section v-if="mapStore.showPopup">
+    <Container  class="flex items-center justify-center h-full">
     <div
       v-if="mapStore.showPopup"
       class="fixed inset-0 bg-black opacity-50"
@@ -33,7 +33,7 @@ const limitedMaps = computed(() => {
       <Carousel class="w-full">
         <CarouselContent>
           <CarouselItem v-for="(map, index) in limitedMaps" :key="index">
-            <div class="w-full flex">
+            <div class="w-full h-[70vh] flex">
               <NuxtImg
                 v-if="
                   map.stylizedBackgroundImage &&
@@ -60,15 +60,6 @@ const limitedMaps = computed(() => {
                   map?.listViewIconTall &&
                   map?.uuid === mapStore?.selectedMap?.uuid
                 "
-                :src="map?.listViewIconTall"
-                alt="List View Icon Tall"
-              />
-
-              <NuxtImg
-                v-if="
-                  map?.listViewIconTall &&
-                  map?.uuid === mapStore?.selectedMap?.uuid
-                "
                 :src="map?.displayIcon"
                 alt="List View Icon Tall"
               />
@@ -77,5 +68,6 @@ const limitedMaps = computed(() => {
         </CarouselContent>
       </Carousel>
     </div>
+    </Container>
   </section>
 </template>

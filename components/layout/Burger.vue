@@ -21,8 +21,8 @@ const popupStore = usePopupStore();
           <Icon name="mingcute:close-line" size="25" />
         </UIButton>
       </div>
-      <HeaderCompsHeaderSearch :condition="'open'" />
-      <BurgerCompsBurgerNav />
+      <HeaderSearch :condition="'open'" />
+      <BurgerNav />
       <UIButton size="sm" class="bg-red-500" @click="popupStore.togglePopup"
         >Play now</UIButton
       >
