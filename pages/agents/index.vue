@@ -44,7 +44,6 @@ const handleCardClick = (uuid: string, displayName: string) => {
       <Carousel
         ref="carousel"
         orientation="vertical"
-        class="relative w-full max-w-xsw-full max-w-s"
         :opts="{
           align: 'start',
         }"

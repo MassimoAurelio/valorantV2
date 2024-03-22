@@ -101,8 +101,6 @@ onMounted(() => {
                 </div>
               </CarouselItem>
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
           </Carousel>
           <Carousel
             ref="carousel"
