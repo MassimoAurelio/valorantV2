@@ -4,11 +4,11 @@ import {
   useFooterInfoButtonsStore,
   useFooterButtonStore,
 } from "@/store/useFooter";
+import { useScreenStore } from "@/store/resizeStore";
 
 const footerImgStore = useFooterSocialsStore();
 const footerInfoButton = useFooterInfoButtonsStore();
 const footerButtons = useFooterButtonStore();
-import { useScreenStore } from "@/store/resizeStore";
 
 const resizeStore = useScreenStore();
 
@@ -34,7 +34,6 @@ const flexFooterButton = computed(() => {
     return "flex flex-col justify-center items-center gap-3 text-white w-full min-h-20";
   }
 });
-
 </script>
 
 <template>
@@ -62,7 +61,7 @@ const flexFooterButton = computed(() => {
       </ul>
     </div>
     <div
-      class="bg-zinc-950 text-zinc-500 text-sm flex justify-center items-center w-full px-5 "
+      class="bg-zinc-950 text-zinc-500 text-sm flex justify-center items-center w-full px-5"
     >
       <p>
         © 2020-2024 Riot Games, Inc. RIOT GAMES, VALORANT and any associated
@@ -70,9 +69,7 @@ const flexFooterButton = computed(() => {
         service marks, and/or registered trademarks of Riot Games, Inc.
       </p>
     </div>
-    <div
-      :class="flexFooterButton"
-    >
+    <div :class="flexFooterButton">
       <ul
         class="hover:bg-zinc-700 rounded-md"
         v-for="item in footerInfoButton.items"

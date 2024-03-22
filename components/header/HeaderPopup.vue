@@ -1,7 +1,32 @@
 <script setup lang="ts">
 import { usePopupStore } from "@/store/popupStore";
-
+import { useScreenStore } from "@/store/resizeStore";
 const popupStore = usePopupStore();
+const resizeStore = useScreenStore();
+
+const qwe = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "mx-8";
+  }
+  if (resizeStore.platform === "tablet") {
+    return "mx-8";
+  }
+  if (resizeStore.platform === "mobile") {
+    return "";
+  }
+});
+
+const colButton = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "flex flex-row justify-center items-center gap-6";
+  }
+  if (resizeStore.platform === "tablet") {
+    return "flex flex-row justify-center items-center gap-6";
+  }
+  if (resizeStore.platform === "mobile") {
+    return "flex flex-col justify-center items-center gap-6";
+  }
+});
 </script>
 
 <template>
@@ -10,7 +35,7 @@ const popupStore = usePopupStore();
     class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
   >
     <div
-      class="flex flex-col gap-10 w-8/12 h-80 bg-slate-900 p-5 border-t border-white"
+      class="flex flex-col gap-10 w-[100vh] h-auto bg-slate-900 p-5 border-t border-white"
     >
       <div class="flex justify-end items-start">
         <UIButton @click="popupStore.showPopup = false">Close</UIButton>
@@ -18,11 +43,11 @@ const popupStore = usePopupStore();
       <div
         class="flex flex-row items-center justify-center text-2xl text-white font-semibold"
       >
-        <span class="mx-8">\</span>
-        <div class="">GET SET UP TO PLAY</div>
-        <span class="mx-8">\</span>
+        <span :class="qwe"> \ </span>
+        <div class="w-auto">GET SET UP TO PLAY</div>
+        <span :class="qwe"> \ </span>
       </div>
-      <div class="flex flex-row justify-center items-center gap-6">
+      <div :class="colButton">
         <div class="flex flex-col justify-center items-center gap-2">
           <p class="text-white text-xs font-thin">
             I don’t have a Riot account yet
@@ -37,6 +62,7 @@ const popupStore = usePopupStore();
             </button>
           </NuxtLink>
         </div>
+
         <div class="flex flex-col justify-center items-center gap-2">
           <p class="text-white text-xs font-thin">I have a Riot account</p>
           <NuxtLink to="/signup" @click="popupStore.showPopup = false">
