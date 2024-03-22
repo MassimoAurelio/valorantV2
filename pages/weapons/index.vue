@@ -47,77 +47,84 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="p-10">
-    <Container>
-      <div class="flex flex-row justify-between items-center w-full">
-        <h1 class="text-white text-8xl font-extrabold">
-          CHOOSE YOUR <br />
-          WEAPON
-        </h1>
-        <div class="flex flex-col relative">
-          <div
-            class="flex flex-row justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
-            @click="dropDownStore.toggleDropDown"
-          >
-            <span class="font-medium">{{
-              selectedCategory ? selectedCategory.toUpperCase() : "ALL WEAPON"
-            }}</span>
-            <div>
-              <Icon name="gridicons:dropdown" size="30" />
-            </div>
-          </div>
-          <div
-            class="text-black absolute top-full left-0 bg-white w-full border border-black"
-            v-if="dropDownStore.showDropDown"
-          >
+  <div
+    :style="{
+      backgroundImage: `url('/VALORANT_Logo_V.jpg')`,
+      backgroundSize: 'cover',
+    }"
+  >
+    <section class="p-10">
+      <Container>
+        <div class="flex flex-row justify-between items-center w-full">
+          <h1 class="text-white text-8xl font-extrabold">
+            CHOOSE YOUR <br />
+            WEAPON
+          </h1>
+          <div class="flex flex-col relative">
             <div
-              v-for="item in WEAPON_CATEGORY"
-              class="p-3 cursor-pointer font-medium text-black"
-              @click="handleCategoryClick(item.categoryName)"
+              class="flex flex-row justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
+              @click="dropDownStore.toggleDropDown"
             >
-              {{ item.categoryName.toUpperCase() }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-wrap py-7">
-        <div
-          v-for="(gun, index) in arsenalStore.arsenal"
-          :key="gun.uuid"
-          class="w-1/2 cursor-pointer"
-        >
-          <div
-            class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
-            @mouseover="arsenalStore.toggleCardItem(true, index)"
-            @mouseleave="arsenalStore.toggleCardItem(false, index)"
-          >
-            <span class="p-2 text-5xl font-bold">{{
-              gun.displayName.toUpperCase()
-            }}</span>
-            <NuxtImg
-              v-if="arsenalStore.showImage[index]"
-              :src="gun.displayIcon"
-              alt="Gun Image"
-              class="object-contain h-40 w-full"
-              loading="lazy"
-            />
-
-            <div
-              class="flex flex-row justify-center items-center gap-5 h-dvh text-2xl font-bold"
-              v-if="arsenalStore.showContent[index]"
-            >
+              <span class="font-medium">{{
+                selectedCategory ? selectedCategory.toUpperCase() : "ALL WEAPON"
+              }}</span>
               <div>
-                TYPES //
-                {{
-                  gun.category
-                    .replace("EEquippableCategory::", "")
-                    .toUpperCase()
-                }}
+                <Icon name="gridicons:dropdown" size="30" />
+              </div>
+            </div>
+            <div
+              class="text-black absolute top-full left-0 bg-white w-full border border-black"
+              v-if="dropDownStore.showDropDown"
+            >
+              <div
+                v-for="item in WEAPON_CATEGORY"
+                class="p-3 cursor-pointer font-medium text-black"
+                @click="handleCategoryClick(item.categoryName)"
+              >
+                {{ item.categoryName.toUpperCase() }}
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
-  </section>
+        <div class="flex flex-wrap py-7">
+          <div
+            v-for="(gun, index) in arsenalStore.arsenal"
+            :key="gun.uuid"
+            class="w-1/2 cursor-pointer"
+          >
+            <div
+              class="text-white p-5 hover:bg-red-500 transition ease-in-out delay-100 flex flex-col justify-between min-h-72 max-h-72"
+              @mouseover="arsenalStore.toggleCardItem(true, index)"
+              @mouseleave="arsenalStore.toggleCardItem(false, index)"
+            >
+              <span class="p-2 text-5xl font-bold">{{
+                gun.displayName.toUpperCase()
+              }}</span>
+              <NuxtImg
+                v-if="arsenalStore.showImage[index]"
+                :src="gun.displayIcon"
+                alt="Gun Image"
+                class="object-contain h-40 w-full"
+                loading="lazy"
+              />
+
+              <div
+                class="flex flex-row justify-center items-center gap-5 h-dvh text-2xl font-bold"
+                v-if="arsenalStore.showContent[index]"
+              >
+                <div>
+                  TYPES //
+                  {{
+                    gun.category
+                      .replace("EEquippableCategory::", "")
+                      .toUpperCase()
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </div>
 </template>
