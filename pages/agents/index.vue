@@ -40,7 +40,7 @@ const handleCardClick = (uuid: string, displayName: string) => {
       backgroundSize: 'cover',
     }"
   >
-    <Container class="flex items-center justify-center h-full">
+    <Container class="flex items-center justify-between h-full">
       <Carousel
         ref="carousel"
         orientation="vertical"

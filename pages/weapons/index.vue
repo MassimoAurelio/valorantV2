@@ -2,6 +2,7 @@
 import { useArsenalStore } from "@/store/useArsenalStore";
 import { useBurgerMenu } from "@/store/burgerNav";
 import { WEAPON_CATEGORY } from "@/types";
+import { useScreenStore } from "@/store/resizeStore";
 
 useSeoMeta({
   title: "VALORANT Guns: Explore Vandal, Phantom, Sherif",
@@ -10,6 +11,7 @@ useSeoMeta({
 const arsenalStore = useArsenalStore();
 const dropDownStore = useBurgerMenu();
 const selectedCategory = ref("");
+const resizeStore = useScreenStore();
 
 const arsenalRequest = async () => {
   try {
@@ -36,6 +38,18 @@ const handleCategoryClick = (category: string) => {
   dropDownStore.toggleDropDown();
 };
 
+const qwe = computed(() => {
+  if (resizeStore.platform === "desctope") {
+    return "flex flex-wrap py-7";
+  }
+  if (resizeStore.platform === "tablet") {
+    return "flex flex-wrap py-7";
+  }
+  if (resizeStore.platform === "mobile") {
+    return "flex flex-col py-7";
+  }
+});
+
 onMounted(() => {
   arsenalRequest();
 });
@@ -55,14 +69,14 @@ onUnmounted(() => {
   >
     <section class="p-10">
       <Container>
-        <div class="flex flex-row justify-between items-center w-full">
+        <div class="flex justify-between items-center w-full">
           <h1 class="text-white text-8xl font-extrabold">
             CHOOSE YOUR <br />
             WEAPON
           </h1>
           <div class="flex flex-col relative">
             <div
-              class="flex flex-row justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
+              class="flex justify-between h-14 w-64 items-center bg-white p-5 cursor-pointer border border-black"
               @click="dropDownStore.toggleDropDown"
             >
               <span class="font-medium">{{
@@ -86,7 +100,7 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap py-7">
+        <div :class="qwe">
           <div
             v-for="(gun, index) in arsenalStore.arsenal"
             :key="gun.uuid"
