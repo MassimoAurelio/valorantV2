@@ -35,7 +35,7 @@ onMounted(() => {
 
 <template>
   <section class="relative">
-    <Container class="">
+    <Container>
       <h1 class="text-8xl text-white font-bold">MAPS</h1>
       <div class="flex flex-col">
         <Carousel
@@ -53,7 +53,7 @@ onMounted(() => {
               class="relative p-2"
             >
               <div class="p-1">
-                <div class="w-full h-full">
+                <div class="w-full h-full rounded-lg">
                   <NuxtImg
                     :src="map.splash"
                     alt="map img"
@@ -68,7 +68,6 @@ onMounted(() => {
         </Carousel>
         <MapsMapDescription />
       </div>
-      <MapsMapPopup v-if="mapStore.showPopup" />
     </Container>
   </section>
 </template>

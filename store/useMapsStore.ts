@@ -6,7 +6,6 @@ export const useMapStore = defineStore({
   state: () => ({
     maps: [] as IMaps[],
     dynamicMap: {} as IMaps,
-    showPopup: false,
     selectedMap: null as IMaps | null,
   }),
   actions: {
@@ -18,9 +17,6 @@ export const useMapStore = defineStore({
     },
     setSelectedMap(map: IMaps) {
       this.selectedMap = map;
-    },
-    togglePopup() {
-      this.showPopup = !this.showPopup;
     },
 
     handlePreviousClick() {
