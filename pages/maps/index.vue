@@ -7,7 +7,6 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { onMounted } from "vue";
 
 useSeoMeta({
@@ -36,7 +35,7 @@ onMounted(() => {
 
 <template>
   <section class="relative">
-    <Container class="flex flex-col items-center justify-center h-full">
+    <Container class="">
       <h1 class="text-8xl text-white font-bold">MAPS</h1>
       <div class="flex flex-col">
         <Carousel
@@ -54,17 +53,13 @@ onMounted(() => {
               class="relative p-2"
             >
               <div class="p-1">
-                <Card>
-                  <CardContent>
-                    <div class="w-full h-full">
-                      <NuxtImg
-                        :src="map.splash"
-                        alt="map img"
-                        class="object-cover w-full h-full"
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
+                <div class="w-full h-full">
+                  <NuxtImg
+                    :src="map.splash"
+                    alt="map img"
+                    class="object-cover w-full h-full"
+                  />
+                </div>
               </div>
             </CarouselItem>
           </CarouselContent>

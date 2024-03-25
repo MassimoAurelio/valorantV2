@@ -77,7 +77,7 @@ onMounted(() => {
       <Container class="flex items-center justify-center h-full">
         <div :class="qwe">
           <Carousel
-            class="relative w-full max-w-sm"
+            class="relative w-full max-w-sm z-10"
             v-if="resizeStore.platform === 'mobile'"
             :opts="{
               align: 'start',
@@ -109,7 +109,7 @@ onMounted(() => {
               resizeStore.platform === 'desctope' ||
               resizeStore.platform === 'tablet'
             "
-            class="relative w-full max-w-xsw-full max-w-s mx-auto"
+            class="relative w-full max-w-xsw-full max-w-s mx-auto z-10"
             :opts="{
               align: 'start',
             }"
@@ -131,7 +131,7 @@ onMounted(() => {
               </CarouselItem>
             </CarouselContent>
           </Carousel>
-          <div :class="img">
+          <div :class="img" class="z-0">
             <NuxtImg
               v-if="agentsStore?.dynamicAgents?.fullPortrait"
               :src="agentsStore?.dynamicAgents?.fullPortrait"

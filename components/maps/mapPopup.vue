@@ -9,65 +9,62 @@ import { useMapStore } from "@/store/useMapsStore";
 const mapStore = useMapStore();
 
 const limitedMaps = computed(() => {
-  return mapStore.maps.slice(0, 5);
+  return mapStore.maps.slice(0, 4).map((map) => ({
+    ...map,
+    images: {
+      stylizedBackgroundImage: map.stylizedBackgroundImage,
+      splash: map.splash,
+      premierBackgroundImage: map.premierBackgroundImage,
+      listViewIconTall: map.listViewIconTall,
+    },
+  }));
 });
 </script>
 
 <template>
   <section v-if="mapStore.showPopup">
-    <Container  class="flex items-center justify-center h-full">
-    <div
-      v-if="mapStore.showPopup"
-      class="fixed inset-0 bg-black opacity-50"
-    ></div>
-    <button
-      class="fixed flex justify-center items-start text-white top-0 right-0 z-1"
-      @click="mapStore.togglePopup()"
-    >
-      <NuxtImg src="/close.svg" class="w-10"></NuxtImg>
-    </button>
-    <div
-      v-if="mapStore.showPopup"
-      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
-    >
-      <Carousel class="w-full">
-        <CarouselContent>
-          <CarouselItem v-for="(map, index) in limitedMaps" :key="index">
-            <div class="w-full h-[70vh] flex">
-              <NuxtImg
-                v-if="
-                  map.stylizedBackgroundImage &&
-                  map?.uuid === mapStore.selectedMap?.uuid
-                "
-                :src="map?.stylizedBackgroundImage"
-                alt="Stylized Background Image"
-              />
-              <NuxtImg
-                v-if="map?.splash && map.uuid === mapStore?.selectedMap?.uuid"
-                :src="map?.splash"
-                alt="Splash Image"
-              />
-              <NuxtImg
-                v-if="
-                  map?.premierBackgroundImage &&
-                  map?.uuid === mapStore?.selectedMap?.uuid
-                "
-                :src="map?.premierBackgroundImage"
-                alt="Premier Background Image"
-              />
-              <NuxtImg
-                v-if="
-                  map?.listViewIconTall &&
-                  map?.uuid === mapStore?.selectedMap?.uuid
-                "
-                :src="map?.displayIcon"
-                alt="List View Icon Tall"
-              />
-            </div>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
-    </div>
+    <Container class="flex items-center justify-center h-full">
+      <div
+        v-if="mapStore.showPopup"
+        class="fixed inset-0 bg-black opacity-50"
+      ></div>
+      <button
+        class="fixed flex justify-center items-start text-white top-10 right-44 z-1"
+        @click="mapStore.togglePopup()"
+      >
+        <NuxtImg src="/close.svg" class="w-10"></NuxtImg>
+      </button>
+      <div
+        v-if="mapStore.showPopup"
+        class="flex fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-4"
+      >
+        <Carousel class="w-full">
+          <CarouselContent>
+            <CarouselItem v-for="(map, index) in limitedMaps" :key="index">
+              <div class="flex">
+                <div class="text-white w-1/2">
+                  <h1>{{ map.displayName }}</h1>
+                  <p>{{ map.narrativeDescription }}</p>
+                </div>
+                <div class="w-full h-[70vh] flex">
+                  <template
+                    v-for="(image, key) in map.images"
+                    v-if="map.uuid === mapStore.selectedMap?.uuid"
+                  >
+                    <NuxtImg
+                      :key="key"
+                      v-if="image"
+                      :src="image"
+                      class="w-full h-full object-cover"
+                      :alt="key"
+                    />
+                  </template>
+                </div>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
+      </div>
     </Container>
   </section>
 </template>
